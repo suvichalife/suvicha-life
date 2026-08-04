@@ -17,20 +17,20 @@ export default function ComparisonTable() {
   return (
     <section className="py-16" style={{ background: "var(--snow)" }}>
       <Reveal className="mx-auto max-w-[560px] px-6 sm:px-8">
-        <h2 className="text-center text-[26px] font-bold leading-tight text-ink">
+        <h2 className="text-center text-[34px] font-bold leading-tight text-ink">
           Here&rsquo;s what you get,
           <br />
           having me by your side.
         </h2>
-        <p className="font-body mt-2 text-center text-[15px] font-semibold text-sage">
+        <p className="font-body mt-2 text-center text-[18px] font-semibold text-sage">
           This is what &ldquo;having an agent&rdquo; should feel like.
         </p>
 
         <div className="mt-8 flex justify-end px-3">
-          <p className="font-thai text-right text-[14px] font-semibold text-ink">
+          <p className="font-thai text-right text-[17px] font-semibold text-ink">
             การดูแล
             <br />
-            จากสุวิชา
+            จากสุวิชชา
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export default function ComparisonTable() {
               className="flex items-center justify-between gap-4 border-t py-4"
               style={{ borderColor: "var(--gray)" }}
             >
-              <p className="font-thai text-[15px] font-medium text-ink">{row.label}</p>
+              <p className="font-thai text-[17px] font-medium text-ink">{row.label}</p>
               {row.ok ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden className="shrink-0">
                   <path

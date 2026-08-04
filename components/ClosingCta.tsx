@@ -7,10 +7,10 @@ export default function ClosingCta() {
       <section className="py-16" style={{ background: "var(--red)" }}>
         <Reveal className="mx-auto max-w-[560px] px-6 text-center sm:px-8">
           <p className="font-body text-[14px] font-semibold text-white">suvicha.life</p>
-          <p className="font-body mt-6 whitespace-nowrap text-[19px] font-semibold leading-tight text-white sm:text-[26px]">
+          <p className="font-body mt-6 whitespace-nowrap text-[20px] font-semibold leading-tight text-white sm:text-[28px]">
             Take the leap. We&rsquo;ll catch the fall.
           </p>
-          <h2 className="mt-1 text-[34px] font-bold leading-tight text-white sm:text-[40px]">
+          <h2 className="mt-2 text-[44px] font-bold leading-tight text-white sm:text-[54px]">
             Be brave enough
             <br />
             to try it all.
@@ -36,7 +36,9 @@ export default function ClosingCta() {
       <section className="py-16" style={{ background: "var(--snow)" }}>
         <Reveal className="mx-auto max-w-[560px] px-6 sm:px-8">
           <h2 className="text-[24px] font-bold leading-tight text-ink">
-            Follow along on instagram. Stay connected and never miss a moment.
+            Follow along on Instagram.
+            <br />
+            Stay connected and never miss a moment.
           </h2>
           <p className="font-body mt-3 text-[15px] font-semibold leading-relaxed text-sage">
             Bringing you tips on protection, savings,

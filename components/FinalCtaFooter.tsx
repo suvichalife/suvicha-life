@@ -6,8 +6,8 @@ export default function FinalCtaFooter() {
     <>
       <section id="contact" className="py-16" style={{ background: "var(--snow)" }}>
         <Reveal className="mx-auto max-w-[560px] px-6 text-center sm:px-8">
-          <p className="font-body text-[14px] font-semibold text-red">suvicha.life</p>
-          <h2 className="mt-2 text-[26px] font-bold leading-tight text-ink sm:text-[30px]">
+          <p className="font-body text-[16px] font-semibold text-red">suvicha.life</p>
+          <h2 className="mt-4 text-[34px] font-bold leading-tight text-ink sm:text-[40px]">
             All it takes is today.
             <br />
             The rest is yours to live.

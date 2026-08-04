@@ -39,9 +39,9 @@ export default function LifeGoesOn() {
             }}
           />
 
-          <div className="absolute inset-x-0 bottom-0 p-6 text-center">
-            <p className="font-thai text-[13px] text-white/70">ปกป้องทุกจังหวะของชีวิต</p>
-            <p className="mt-1 text-[30px] font-bold text-white">Life goes on.</p>
+          <div className="absolute inset-x-0 bottom-[12%] px-6 text-center">
+            <p className="font-thai text-[16px] text-white/70">ปกป้องทุกจังหวะของชีวิต</p>
+            <p className="mt-1 text-[36px] font-bold text-white">Life goes on.</p>
           </div>
         </div>
       </Reveal>

@@ -17,7 +17,7 @@ const kanit = Kanit({
 
 export const metadata: Metadata = {
   title: "suvicha.life — Life, Unlocked.",
-  description: "สุวิชา ตัวแทนประกันชีวิตและที่ปรึกษาการเงิน ปกป้องทุกจังหวะของชีวิตคุณ",
+  description: "สุวิชชา ตัวแทนประกันชีวิตและที่ปรึกษาการเงิน ปกป้องทุกจังหวะของชีวิต",
 };
 
 export default function RootLayout({

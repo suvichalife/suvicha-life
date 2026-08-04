@@ -5,10 +5,10 @@ export default function TogetherSection() {
   return (
     <section className="py-16" style={{ background: "var(--snow)" }}>
       <Reveal className="mx-auto max-w-[560px] px-6 sm:px-8">
-        <p className="font-body text-center text-[14px] font-bold text-ink">
+        <p className="font-body text-center text-[17px] font-bold text-ink">
           Start together. Stay together.
         </p>
-        <h2 className="text-gradient-rp mt-2 text-center text-[28px] font-bold leading-tight sm:text-[32px]">
+        <h2 className="text-gradient-rp mt-2 text-center text-[34px] font-bold leading-tight sm:text-[40px]">
           We walk this together,
           <br />
           from day one.
@@ -30,12 +30,12 @@ export default function TogetherSection() {
                 "linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 65%, rgba(0,0,0,.55) 100%)",
             }}
           />
-          <p className="font-body absolute left-6 right-6 top-6 text-center text-[19px] font-bold leading-snug text-white">
+          <p className="font-body absolute left-6 right-6 top-6 text-center text-[23px] font-bold leading-snug text-white">
             You take the first step.
             <br />
             I stay for every one after.
           </p>
-          <p className="font-body absolute inset-x-6 bottom-6 text-center text-[19px] font-bold leading-snug text-white">
+          <p className="font-body absolute inset-x-6 bottom-6 text-center text-[23px] font-bold leading-snug text-white">
             I&rsquo;ve seen enough to know
             <br />
             why this matters.

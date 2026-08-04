@@ -23,14 +23,14 @@ const copyBlocks = [
 
 export default function Hero() {
   return (
-    <section id="hero" className="pt-28 pb-16" style={{ background: "var(--snow)" }}>
+    <section id="hero" className="pt-24 pb-16" style={{ background: "var(--snow)" }}>
       <div className="mx-auto max-w-[720px] px-6 text-center sm:px-8">
         <p className="font-thai text-[18px] font-medium text-sage sm:text-[20px]">
           ปกป้องทุกจังหวะของชีวิต
         </p>
 
         <h1
-          className="mt-4 whitespace-nowrap text-[9.5vw] leading-[0.95] sm:text-[64px]"
+          className="mt-3 whitespace-nowrap text-[9.5vw] leading-[0.95] sm:text-[64px]"
           style={{ letterSpacing: "-0.02em" }}
         >
           <span
@@ -49,8 +49,9 @@ export default function Hero() {
       </div>
 
       <div
-        className="relative mx-auto mt-8 w-[96%] max-w-[620px]"
+        className="mx-auto mt-4 flex justify-center"
         style={{
+          height: "30vh",
           animation: "float-photo 5s ease-in-out infinite",
           filter: "drop-shadow(0 28px 48px rgba(42,50,57,.18))",
         }}
@@ -61,12 +62,12 @@ export default function Hero() {
           width={1824}
           height={2320}
           priority
-          className="h-auto w-full select-none"
+          className="h-full w-auto select-none"
         />
       </div>
 
       <div className="mx-auto max-w-[720px] px-6 text-center sm:px-8">
-        <h2 className="mt-6 text-[40px] font-bold text-ink sm:text-[48px]" style={{ letterSpacing: "-0.02em" }}>
+        <h2 className="mt-4 text-[40px] font-bold text-ink sm:text-[48px]" style={{ letterSpacing: "-0.02em" }}>
           Go live<span className="text-red">.</span>
         </h2>
 
@@ -78,7 +79,7 @@ export default function Hero() {
           href={LINE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-glow font-thai mt-6 inline-block rounded-full px-8 py-3.5 text-[15px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
+          className="btn-glow font-thai mt-4 inline-block rounded-full px-8 py-3.5 text-[15px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
           style={{ background: "var(--red)" }}
         >
           ปรึกษาฟรี
@@ -87,8 +88,8 @@ export default function Hero() {
         <div className="mt-20 flex flex-col gap-12">
           {copyBlocks.map((block) => (
             <Reveal key={block.lead}>
-              <p className="text-[24px] font-bold leading-tight text-red sm:text-[28px]">{block.lead}</p>
-              <p className="mt-1 text-[24px] font-bold leading-tight text-ink sm:text-[28px]">
+              <p className="text-[32px] font-bold leading-tight text-red sm:text-[38px]">{block.lead}</p>
+              <p className="mt-1 text-[32px] font-bold leading-tight text-ink sm:text-[38px]">
                 {block.bodyLines[0]}
                 <br />
                 {block.bodyLines[1]}
