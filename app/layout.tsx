@@ -15,9 +15,28 @@ const kanit = Kanit({
   weight: ["300", "400", "600", "700"],
 });
 
+const title = "suvicha.life — Life, Unlocked.";
+const description = "สุวิชชา ตัวแทนประกันชีวิตและที่ปรึกษาการเงิน ปกป้องทุกจังหวะของชีวิต";
+
 export const metadata: Metadata = {
-  title: "suvicha.life — Life, Unlocked.",
-  description: "สุวิชชา ตัวแทนประกันชีวิตและที่ปรึกษาการเงิน ปกป้องทุกจังหวะของชีวิต",
+  metadataBase: new URL("https://suvicha.life"),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: "https://suvicha.life",
+    siteName: "suvicha.life",
+    images: ["/images/standing-portrait.jpg"],
+    locale: "th_TH",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/images/standing-portrait.jpg"],
+  },
 };
 
 export default function RootLayout({

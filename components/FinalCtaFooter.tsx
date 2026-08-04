@@ -26,7 +26,7 @@ export default function FinalCtaFooter() {
 
       <footer className="px-6 py-14 sm:px-8" style={{ background: "var(--footer-ink)" }}>
         <div className="mx-auto max-w-[560px]">
-          <h3 className="text-[32px] font-bold text-white">Meet Suvicha</h3>
+          <h3 className="text-[40px] font-bold text-white">Meet Suvicha</h3>
 
           <div className="font-thai mt-6 flex flex-col gap-4 text-[13px] leading-relaxed text-white/60">
             <p>
