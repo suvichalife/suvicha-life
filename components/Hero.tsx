@@ -23,14 +23,14 @@ const copyBlocks = [
 
 export default function Hero() {
   return (
-    <section id="hero" className="pt-24 pb-16" style={{ background: "var(--snow)" }}>
+    <section id="hero" className="pt-20 pb-16" style={{ background: "var(--snow)" }}>
       <div className="mx-auto max-w-[720px] px-6 text-center sm:px-8">
         <p className="font-thai text-[18px] font-medium text-sage sm:text-[20px]">
           ปกป้องทุกจังหวะของชีวิต
         </p>
 
         <h1
-          className="mt-2 whitespace-nowrap text-[9.5vw] leading-[0.95] sm:text-[64px]"
+          className="mt-1 whitespace-nowrap text-[9.5vw] leading-[0.95] sm:text-[64px]"
           style={{ letterSpacing: "-0.02em" }}
         >
           <span
@@ -49,7 +49,7 @@ export default function Hero() {
       </div>
 
       <div
-        className="mx-auto mt-2 flex justify-center"
+        className="mx-auto mt-1 flex justify-center"
         style={{
           height: "60vh",
           animation: "float-photo 5s ease-in-out infinite",
@@ -67,11 +67,11 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-[720px] px-6 text-center sm:px-8">
-        <h2 className="mt-2 text-[40px] font-bold text-ink sm:text-[48px]" style={{ letterSpacing: "-0.02em" }}>
+        <h2 className="mt-1 text-[40px] font-bold text-ink sm:text-[48px]" style={{ letterSpacing: "-0.02em" }}>
           Go live<span className="text-red">.</span>
         </h2>
 
-        <p className="font-thai mt-2 text-[15px] text-sage">
+        <p className="font-thai mt-1 text-[15px] text-sage">
           สุวิชชา<span className="mx-2 text-gray">|</span>ตัวแทนประกันชีวิต
         </p>
 

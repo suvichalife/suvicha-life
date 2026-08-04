@@ -16,7 +16,7 @@ const kanit = Kanit({
 });
 
 const title = "suvicha.life — Life, Unlocked.";
-const description = "สุวิชชา ตัวแทนประกันชีวิตและที่ปรึกษาการเงิน ปกป้องทุกจังหวะของชีวิต";
+const description = "สุวิชชา | ตัวแทนประกันชีวิตและที่ปรึกษาการเงิน\nปกป้องทุกจังหวะของชีวิต";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://suvicha.life"),
