@@ -72,7 +72,7 @@ export default function InsuranceCarousel() {
             key={plan.title}
             className="flex min-h-[460px] w-[85%] shrink-0 snap-start flex-col rounded-[22px] bg-snow p-6 sm:w-[340px] sm:min-h-[480px]"
           >
-            <p className="text-gradient-rp font-thai text-[26px] font-bold leading-tight">{plan.title}</p>
+            <p className="text-gradient-rp self-start font-thai text-[26px] font-bold leading-tight">{plan.title}</p>
             <p className="font-body mt-2 text-[20px] font-bold leading-snug text-ink">
               {plan.tagLines.map((line, i) => (
                 <span key={line}>

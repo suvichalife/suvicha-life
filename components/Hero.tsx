@@ -67,7 +67,7 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-[720px] px-6 text-center sm:px-8">
-        <h2 className="mt-1 text-[40px] font-bold text-ink sm:text-[48px]" style={{ letterSpacing: "-0.02em" }}>
+        <h2 className="mt-0 text-[40px] font-bold text-ink sm:text-[48px]" style={{ letterSpacing: "-0.02em" }}>
           Go live<span className="text-red">.</span>
         </h2>
 
@@ -79,7 +79,7 @@ export default function Hero() {
           href={LINE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-glow font-thai mt-2 inline-block rounded-full px-8 py-3.5 text-[15px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
+          className="btn-glow font-thai mt-4 inline-block rounded-full px-8 py-3.5 text-[15px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
           style={{ background: "var(--red)" }}
         >
           ปรึกษาฟรี
