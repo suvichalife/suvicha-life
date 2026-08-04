@@ -85,7 +85,7 @@ export default function InsuranceCarousel() {
 
             <ul className="mt-4 flex flex-1 flex-col gap-3">
               {plan.bullets.map((bullet) => (
-                <li key={bullet} className="font-thai flex gap-2.5 text-[14px] font-medium leading-snug text-ink">
+                <li key={bullet} className="font-thai flex gap-2.5 text-[15px] font-medium leading-snug text-ink">
                   <span
                     aria-hidden
                     className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full"

@@ -38,7 +38,9 @@ export default function ClosingCta() {
           <h2 className="text-[27px] font-bold leading-tight text-ink">
             Follow along on Instagram.
             <br />
-            Stay connected and never miss a moment.
+            Stay connected and
+            <br />
+            never miss a moment.
           </h2>
           <p className="font-body mt-3 text-[17px] font-semibold leading-relaxed text-sage">
             Bringing you tips on protection, savings,
