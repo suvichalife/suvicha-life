@@ -70,7 +70,7 @@ export default function InsuranceCarousel() {
         {plans.map((plan) => (
           <div
             key={plan.title}
-            className="flex min-h-[540px] w-[85%] shrink-0 snap-start flex-col rounded-[22px] bg-snow p-6 sm:w-[340px]"
+            className="flex min-h-[460px] w-[85%] shrink-0 snap-start flex-col rounded-[22px] bg-snow p-6 sm:w-[340px] sm:min-h-[480px]"
           >
             <p className="text-gradient-rp font-thai text-[26px] font-bold leading-tight">{plan.title}</p>
             <p className="font-body mt-2 text-[20px] font-bold leading-snug text-ink">
@@ -85,7 +85,7 @@ export default function InsuranceCarousel() {
 
             <ul className="mt-4 flex flex-1 flex-col gap-3">
               {plan.bullets.map((bullet) => (
-                <li key={bullet} className="font-thai flex gap-2.5 text-[16px] font-medium leading-snug text-ink">
+                <li key={bullet} className="font-thai flex gap-2.5 text-[18px] font-medium leading-snug text-ink">
                   <span
                     aria-hidden
                     className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full"

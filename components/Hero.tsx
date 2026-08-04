@@ -51,7 +51,7 @@ export default function Hero() {
       <div
         className="mx-auto mt-4 flex justify-center"
         style={{
-          height: "30vh",
+          height: "46vh",
           animation: "float-photo 5s ease-in-out infinite",
           filter: "drop-shadow(0 28px 48px rgba(42,50,57,.18))",
         }}
@@ -85,7 +85,7 @@ export default function Hero() {
           ปรึกษาฟรี
         </a>
 
-        <div className="mt-20 flex flex-col gap-12">
+        <div className="mt-28 flex flex-col gap-12">
           {copyBlocks.map((block) => (
             <Reveal key={block.lead}>
               <p className="text-[32px] font-bold leading-tight text-red sm:text-[38px]">{block.lead}</p>

@@ -35,12 +35,12 @@ export default function ClosingCta() {
 
       <section className="py-16" style={{ background: "var(--snow)" }}>
         <Reveal className="mx-auto max-w-[560px] px-6 sm:px-8">
-          <h2 className="text-[24px] font-bold leading-tight text-ink">
+          <h2 className="text-[27px] font-bold leading-tight text-ink">
             Follow along on Instagram.
             <br />
             Stay connected and never miss a moment.
           </h2>
-          <p className="font-body mt-3 text-[15px] font-semibold leading-relaxed text-sage">
+          <p className="font-body mt-3 text-[17px] font-semibold leading-relaxed text-sage">
             Bringing you tips on protection, savings,
             <br />
             end the everyday moments worth planning for.
@@ -49,7 +49,7 @@ export default function ClosingCta() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-block rounded-full px-6 py-3 text-[14px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
+            className="btn-glow mt-5 inline-block rounded-full px-6 py-3 text-[14px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
             style={{ background: "var(--red)" }}
           >
             Follow @suvicha.life

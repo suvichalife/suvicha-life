@@ -88,7 +88,7 @@ export default function LifestyleGrid() {
   return (
     <section className="py-16" style={{ background: "var(--snow)" }}>
       <Reveal className="mx-auto max-w-[560px] px-6 text-center sm:px-8">
-        <h2 className="text-[28px] font-bold leading-tight text-ink">
+        <h2 className="text-[34px] font-bold leading-tight text-ink">
           Protection that fits
           <br />
           <span className="text-gradient-rp">every lifestyle.</span>
