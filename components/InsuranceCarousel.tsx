@@ -85,7 +85,7 @@ export default function InsuranceCarousel() {
 
             <ul className="mt-4 flex flex-1 flex-col gap-3">
               {plan.bullets.map((bullet) => (
-                <li key={bullet} className="font-thai flex gap-2.5 text-[18px] font-medium leading-snug text-ink">
+                <li key={bullet} className="font-thai flex gap-2.5 text-[14px] font-medium leading-snug text-ink">
                   <span
                     aria-hidden
                     className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full"
@@ -100,7 +100,7 @@ export default function InsuranceCarousel() {
               href={LINE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-glow font-thai mt-6 inline-block self-start rounded-full px-5 py-2.5 text-[13px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
+              className="btn-glow font-thai mt-6 inline-block self-start rounded-full px-6 py-3 text-[15px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
               style={{ background: "var(--red)" }}
             >
               ปรึกษาฟรี
