@@ -33,7 +33,7 @@ export default function Hero() {
         </p>
 
         <h1
-          className="mt-1 whitespace-nowrap text-[9.5vw] leading-[0.95] sm:text-[64px]"
+          className="mt-2 whitespace-nowrap text-[9.5vw] leading-[0.95] sm:text-[64px]"
           style={{ letterSpacing: "-0.02em" }}
         >
           <span
@@ -47,7 +47,8 @@ export default function Hero() {
           >
             LIFE,
           </span>{" "}
-          <span className="font-bold text-ink">UNLOCKED.</span>
+          <span className="font-bold text-ink">UNLOCKED</span>
+          <span className="font-bold text-red">.</span>
         </h1>
       </div>
 

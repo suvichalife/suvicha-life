@@ -16,7 +16,7 @@ export default function FinalCtaFooter() {
             href={LINE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-glow font-thai mt-6 inline-block rounded-full px-8 py-3.5 text-[15px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
+            className="btn-glow font-thai mt-12 inline-block rounded-full px-8 py-3.5 text-[15px] font-semibold text-snow transition-transform duration-300 hover:scale-[1.03]"
             style={{ background: "var(--red)" }}
           >
             ปรึกษาฟรี

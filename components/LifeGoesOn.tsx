@@ -40,7 +40,7 @@ export default function LifeGoesOn() {
           />
 
           <div className="absolute inset-x-0 bottom-[6%] px-6 text-center">
-            <p className="font-thai text-[16px] text-white/70">ปกป้องทุกจังหวะของชีวิต</p>
+            <p className="font-thai text-[16px] font-medium text-white/70">ปกป้องทุกจังหวะของชีวิต</p>
             <p className="mt-1 text-[42px] font-bold text-white">Life goes on.</p>
           </div>
         </div>
