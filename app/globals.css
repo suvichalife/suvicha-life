@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+:root {
+  /* ── Core Palette ── */
+  --ink: #2a3239;
+  --sage: #8a9992;
+  --gray: #e4e5e6;
+  --snow: #f5f6f8;
+  --red: #d21244;
+  --pink: #e37995;
+  --blush: #f6ccd8;
+  --maroon-deep: #3a0512;
+  --maroon: #5c0e21;
+  --footer-ink: #20262b;
+
+  /* ── Derived ── */
+  --ink-80: rgba(42, 50, 57, 0.8);
+  --ink-40: rgba(42, 50, 57, 0.4);
+  --sage-20: rgba(138, 153, 146, 0.2);
+  --red-glow: rgba(210, 18, 68, 0.28);
+  --hairline: rgba(42, 50, 57, 0.08);
+
+  /* ── Motion ── */
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-morph: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-pretendard: "Pretendard Variable", -apple-system, sans-serif;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-sage: var(--sage);
+  --color-gray: var(--gray);
+  --color-snow: var(--snow);
+  --color-red: var(--red);
+  --color-pink: var(--pink);
+  --color-blush: var(--blush);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-maroon: var(--maroon);
+  --color-footer-ink: var(--footer-ink);
+
+  --font-display: var(--font-gloock);
+  --font-thai: var(--font-kanit);
+  --font-body: var(--font-pretendard);
+}
+
+body {
+  background: var(--snow);
+  color: var(--ink);
+  font-family: var(--font-pretendard), var(--font-kanit), -apple-system, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes heartbeat-dot {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  20% {
+    transform: scale(1.7);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes float-photo {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-0.3deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0.3deg);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.72);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-core {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.text-gradient-rp {
+  background: linear-gradient(90deg, var(--red), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-glow {
+  box-shadow: 0 10px 32px 6px rgba(210, 18, 68, 0.4);
+}
