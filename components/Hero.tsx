@@ -24,7 +24,10 @@ const copyBlocks = [
 export default function Hero() {
   return (
     <section id="hero" className="pt-20 pb-16" style={{ background: "var(--snow)" }}>
-      <div className="mx-auto max-w-[720px] px-6 text-center sm:px-8">
+      <div
+        className="relative mx-auto max-w-[720px] px-6 text-center sm:px-8"
+        style={{ top: "28px" }}
+      >
         <p className="font-thai text-[18px] font-medium text-sage sm:text-[20px]">
           ปกป้องทุกจังหวะของชีวิต
         </p>
