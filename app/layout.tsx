@@ -12,7 +12,7 @@ const gloock = Gloock({
 const kanit = Kanit({
   variable: "--font-kanit",
   subsets: ["latin", "thai"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const title = "suvicha.life — Life, Unlocked.";
