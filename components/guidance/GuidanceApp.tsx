@@ -41,9 +41,14 @@ import {
   AlertTriangle,
 } from "lucide-react";
 
-// Same font stack as the insurance site (globals.css `body`): Pretendard for
-// body copy, Kanit for Thai — both already loaded by the root layout.
-const F = "var(--font-pretendard), var(--font-kanit), -apple-system, sans-serif";
+// Kanit first (not Pretendard-first like the main site's body stack): this
+// page is Thai-heavy, and Safari/WebKit doesn't reliably fall through
+// per-glyph to the next font in a stack the way Chromium does, so a
+// broad-coverage font listed first (Pretendard) can "win" the font match for
+// Thai characters even without real glyphs for them, rendering as a system
+// fallback. Putting Kanit first avoids that ambiguity; it has full Latin
+// coverage too, so English text on this page still renders correctly.
+const F = "var(--font-kanit), var(--font-pretendard), -apple-system, sans-serif";
 
 // Brand palette pulled from the insurance site (app/globals.css). The six
 // former Apple-style topic hues (green/gold/purple/blue/orange) are remapped
