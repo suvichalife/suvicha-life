@@ -153,7 +153,7 @@ function Pill({ label, color = C.red }: { label: string; color?: string }) {
         color: "#FFF",
         borderRadius: 999,
         padding: "5px 14px",
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 600,
       }}
     >
@@ -331,8 +331,8 @@ function BreathCircle() {
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 20 }}>
         {[["หายใจเข้า", "วงขยาย"], ["กลั้นไว้", "วงหยุด"], ["หายใจออก", "วงหด"], ["กลั้นไว้", "วงหยุด"]].map(([a, b], i) => (
           <div key={i} style={{ textAlign: "center", padding: "6px 10px", background: C.purple + "10", borderRadius: 10 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: C.purple }}>{a}</div>
-            <div style={{ fontSize: 10, color: C.su }}>4 วินาที · {b}</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: C.purple }}>{a}</div>
+            <div style={{ fontSize: 13, color: C.su }}>4 วินาที · {b}</div>
           </div>
         ))}
       </div>
@@ -364,24 +364,24 @@ function BreathCircle() {
             boxShadow: `0 0 ${active ? 60 : 15}px rgba(58,5,18,${active ? 0.15 : 0.05})`,
           }}
         >
-          <div style={{ fontSize: 13, fontWeight: 700, color: C.purple }}>{active ? phases[phase] : "แตะเพื่อเริ่ม"}</div>
-          {active && <div style={{ fontSize: 32, fontWeight: 800, color: C.purple, marginTop: 4 }}>{count}</div>}
+          <div style={{ fontSize: 16, fontWeight: 700, color: C.purple }}>{active ? phases[phase] : "แตะเพื่อเริ่ม"}</div>
+          {active && <div style={{ fontSize: 36, fontWeight: 800, color: C.purple, marginTop: 4 }}>{count}</div>}
         </div>
       </div>
       {active && (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginTop: 8 }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: C.purple, fontVariantNumeric: "tabular-nums" }}>
+          <div style={{ fontSize: 23, fontWeight: 700, color: C.purple, fontVariantNumeric: "tabular-nums" }}>
             {mm}:{ss}
           </div>
           <button
             onClick={stop}
-            style={{ background: C.li, border: "none", borderRadius: 20, padding: "8px 16px", fontSize: 13, fontWeight: 600, color: C.su, cursor: "pointer", fontFamily: F }}
+            style={{ background: C.li, border: "none", borderRadius: 20, padding: "8px 16px", fontSize: 16, fontWeight: 600, color: C.su, cursor: "pointer", fontFamily: F }}
           >
             หยุด
           </button>
         </div>
       )}
-      {!active && <div style={{ fontSize: 12, color: C.su, marginTop: 8, textAlign: "center" }}>หายใจเข้า 4 — กลั้น 4 — หายใจออก 4 — กลั้น 4</div>}
+      {!active && <div style={{ fontSize: 15, color: C.su, marginTop: 8, textAlign: "center" }}>หายใจเข้า 4 — กลั้น 4 — หายใจออก 4 — กลั้น 4</div>}
     </div>
   );
 }
@@ -402,24 +402,24 @@ function BodyScan() {
 
   return (
     <div style={{ padding: "12px 0" }}>
-      <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>
+      <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>
         นั่งหลับตา แล้วค่อย ๆ เคลื่อนความสนใจไปทีละส่วนของร่างกาย สังเกตว่ามีความตึง ความเจ็บ หรือความสบาย แค่สังเกตโดยไม่ตัดสิน
       </p>
       {step < 0 && !done && (
         <button
           onClick={() => setStep(0)}
-          style={{ background: C.purple, color: "#FFF", border: "none", borderRadius: 12, padding: "10px 20px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: F }}
+          style={{ background: C.purple, color: "#FFF", border: "none", borderRadius: 12, padding: "10px 20px", fontSize: 17, fontWeight: 600, cursor: "pointer", fontFamily: F }}
         >
           เริ่ม Body Scan
         </button>
       )}
       {step >= 0 && !done && (
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: 11, color: C.su, marginBottom: 8 }}>
+          <div style={{ fontSize: 14, color: C.su, marginBottom: 8 }}>
             ส่วนที่ {step + 1} จาก {parts.length}
           </div>
-          <div style={{ fontSize: 20, fontWeight: 700, color: C.purple, marginBottom: 8 }}>{parts[step]}</div>
-          <p style={{ fontSize: 13, color: C.su, lineHeight: 1.6, marginBottom: 14 }}>หายใจเข้าลึก ๆ ให้ความสนใจกับบริเวณนี้อย่างอ่อนโยน</p>
+          <div style={{ fontSize: 23, fontWeight: 700, color: C.purple, marginBottom: 8 }}>{parts[step]}</div>
+          <p style={{ fontSize: 16, color: C.su, lineHeight: 1.6, marginBottom: 14 }}>หายใจเข้าลึก ๆ ให้ความสนใจกับบริเวณนี้อย่างอ่อนโยน</p>
           <div style={{ height: 6, background: C.li, borderRadius: 3, overflow: "hidden" }}>
             <div style={{ height: "100%", background: C.purple, borderRadius: 3, width: `${((step + 1) / parts.length) * 100}%`, transition: `width .5s ${EASE_REVEAL}` }} />
           </div>
@@ -427,14 +427,14 @@ function BodyScan() {
       )}
       {done && (
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: 18, fontWeight: 700, color: C.purple, marginBottom: 6 }}>สแกนครบแล้ว</div>
-          <p style={{ fontSize: 13, color: C.su, marginBottom: 12 }}>ค่อย ๆ ลืมตาขึ้น สังเกตว่าร่างกายรู้สึกอย่างไรตอนนี้</p>
+          <div style={{ fontSize: 21, fontWeight: 700, color: C.purple, marginBottom: 6 }}>สแกนครบแล้ว</div>
+          <p style={{ fontSize: 16, color: C.su, marginBottom: 12 }}>ค่อย ๆ ลืมตาขึ้น สังเกตว่าร่างกายรู้สึกอย่างไรตอนนี้</p>
           <button
             onClick={() => {
               setStep(-1);
               setDone(false);
             }}
-            style={{ background: C.li, border: "none", borderRadius: 10, padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: F }}
+            style={{ background: C.li, border: "none", borderRadius: 10, padding: "8px 16px", fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: F }}
           >
             ทำอีกครั้ง
           </button>
@@ -461,21 +461,21 @@ function JournalBox() {
 
   return (
     <div style={{ padding: "10px 0" }}>
-      <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.6, marginBottom: 12 }}>การเขียนบันทึกช่วยดึงความคิดออกจากหัว สมองไม่ต้องคอยจำ รู้สึกเบาขึ้นทันที ใช้เวลา 5-10 นาที</p>
+      <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.6, marginBottom: 12 }}>การเขียนบันทึกช่วยดึงความคิดออกจากหัว สมองไม่ต้องคอยจำ รู้สึกเบาขึ้นทันที ใช้เวลา 5-10 นาที</p>
       <Gl style={{ padding: 14, marginBottom: 10 }}>
-        <div style={{ fontSize: 11, color: C.su, marginBottom: 6 }}>{ts}</div>
+        <div style={{ fontSize: 14, color: C.su, marginBottom: 6 }}>{ts}</div>
         <textarea
           value={tx}
           onChange={(e) => setTx(e.target.value)}
           placeholder="เขียนสิ่งที่คิดและรู้สึก..."
           rows={4}
-          style={{ width: "100%", border: "none", outline: "none", background: "transparent", fontSize: 14, color: C.tx, fontFamily: F, resize: "none", lineHeight: 1.6 }}
+          style={{ width: "100%", border: "none", outline: "none", background: "transparent", fontSize: 17, color: C.tx, fontFamily: F, resize: "none", lineHeight: 1.6 }}
         />
       </Gl>
       {tx && (
         <button
           onClick={doCopy}
-          style={{ display: "flex", alignItems: "center", gap: 6, background: C.purple, color: "#FFF", border: "none", borderRadius: 12, padding: "10px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: F }}
+          style={{ display: "flex", alignItems: "center", gap: 6, background: C.purple, color: "#FFF", border: "none", borderRadius: 12, padding: "10px 16px", fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: F }}
         >
           {cp ? <Check size={15} /> : <Copy size={15} />}
           {cp ? "คัดลอกแล้ว" : "คัดลอกบันทึก"}
@@ -510,24 +510,24 @@ function GratBox() {
 
   return (
     <div style={{ padding: "10px 0" }}>
-      <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.6, marginBottom: 12 }}>จดสิ่งดี 3 อย่างก่อนนอน ฝึกสมองให้มองหาสิ่งดีในชีวิต ทำต่อเนื่อง 21 วัน เปลี่ยน baseline mood ได้จริง</p>
+      <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.6, marginBottom: 12 }}>จดสิ่งดี 3 อย่างก่อนนอน ฝึกสมองให้มองหาสิ่งดีในชีวิต ทำต่อเนื่อง 21 วัน เปลี่ยน baseline mood ได้จริง</p>
       {items.map((v, i) => (
         <Gl key={i} style={{ padding: "10px 14px", marginBottom: 6, display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 26, height: 26, borderRadius: 8, background: C.purple + "14", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: C.purple, flexShrink: 0 }}>
+          <div style={{ width: 26, height: 26, borderRadius: 8, background: C.purple + "14", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, fontWeight: 700, color: C.purple, flexShrink: 0 }}>
             {i + 1}
           </div>
           <input
             value={v}
             onChange={(e) => setI(i, e.target.value)}
             placeholder={"สิ่งดีที่ " + (i + 1) + "..."}
-            style={{ flex: 1, border: "none", outline: "none", background: "transparent", fontSize: 14, color: C.tx, fontFamily: F }}
+            style={{ flex: 1, border: "none", outline: "none", background: "transparent", fontSize: 17, color: C.tx, fontFamily: F }}
           />
         </Gl>
       ))}
       {items.some(Boolean) && (
         <button
           onClick={doCopy}
-          style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 6, background: C.purple, color: "#FFF", border: "none", borderRadius: 12, padding: "10px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: F }}
+          style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 6, background: C.purple, color: "#FFF", border: "none", borderRadius: 12, padding: "10px 16px", fontSize: 16, fontWeight: 600, cursor: "pointer", fontFamily: F }}
         >
           {cp ? <Check size={15} /> : <Copy size={15} />}
           {cp ? "คัดลอกแล้ว" : "คัดลอก"}
@@ -557,9 +557,9 @@ function CalendarDay() {
     <div style={{ marginBottom: 20 }}>
       {blocks.map((b, i) => (
         <div key={i} style={{ display: "flex", gap: 8, marginBottom: 2, alignItems: "stretch" }}>
-          <div style={{ width: 44, fontSize: 11, color: C.su, fontWeight: 500, paddingTop: 5, flexShrink: 0, textAlign: "right" }}>{b.t}</div>
+          <div style={{ width: 44, fontSize: 14, color: C.su, fontWeight: 500, paddingTop: 5, flexShrink: 0, textAlign: "right" }}>{b.t}</div>
           <div style={{ flex: 1, background: b.c + "18", borderLeft: "3px solid " + b.c, borderRadius: "0 8px 8px 0", padding: "5px 10px", minHeight: Math.max(26, b.h * 22) }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: b.c }}>{b.l}</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: b.c }}>{b.l}</div>
           </div>
         </div>
       ))}
@@ -630,8 +630,8 @@ function PathDetail() {
   ];
   return (
     <div style={{ padding: "24px 20px 60px" }}>
-      <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 6 }}>8 เส้นทางหลังจบ ม.3</h3>
-      <p style={{ fontSize: 14, color: C.su, lineHeight: 1.6, marginBottom: 20 }}>แตะแต่ละเส้นทางเพื่อดูรายละเอียด</p>
+      <h3 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6 }}>8 เส้นทางหลังจบ ม.3</h3>
+      <p style={{ fontSize: 17, color: C.su, lineHeight: 1.6, marginBottom: 20 }}>แตะแต่ละเส้นทางเพื่อดูรายละเอียด</p>
       <div style={{ position: "relative", marginBottom: 24 }}>
         <div style={{ position: "absolute", left: 23, top: 0, bottom: 0, width: 2, background: C.green + "25" }} />
         {PATHS.map((p, i) => (
@@ -656,19 +656,19 @@ function PathDetail() {
             </div>
             <Gl style={{ flex: 1, padding: sel === i ? "18px" : "12px 16px", border: sel === i ? "1.5px solid " + p.color + "30" : "1px solid rgba(255,255,255,.5)", transition: `padding .2s ${EASE_MORPH}` }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <div style={{ fontSize: 14, fontWeight: 700 }}>{p.name}</div>
+                <div style={{ fontSize: 17, fontWeight: 700 }}>{p.name}</div>
                 <ChevronRight size={14} color={C.su} style={{ transform: sel === i ? "rotate(90deg)" : "none", transition: `transform .25s ${EASE_MORPH}` }} />
               </div>
-              <div style={{ fontSize: 12, color: p.color, fontWeight: 600, marginTop: 3 }}>
+              <div style={{ fontSize: 15, color: p.color, fontWeight: 600, marginTop: 3 }}>
                 {p.time} · ค่าใช้จ่าย: {p.cost}
               </div>
               <div style={{ overflow: "hidden", maxHeight: sel === i ? "1000px" : "0", transition: `max-height .4s ${EASE_REVEAL}` }}>
                 <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid " + C.ln }}>
-                  <p style={{ fontSize: 13, lineHeight: 1.75, marginBottom: 10 }}>{p.d}</p>
-                  <div style={{ fontSize: 12, color: C.su }}>
+                  <p style={{ fontSize: 16, lineHeight: 1.75, marginBottom: 10 }}>{p.d}</p>
+                  <div style={{ fontSize: 15, color: C.su }}>
                     เส้นทางต่อ: <span style={{ color: p.color }}>{p.next}</span>
                   </div>
-                  <div style={{ fontSize: 12, color: C.su, marginTop: 4 }}>
+                  <div style={{ fontSize: 15, color: C.su, marginTop: 4 }}>
                     เหมาะสำหรับ: <span style={{ color: C.tx }}>{p.fit}</span>
                   </div>
                 </div>
@@ -677,20 +677,20 @@ function PathDetail() {
           </div>
         ))}
       </div>
-      <h4 style={{ fontSize: 16, fontWeight: 700, marginBottom: 12 }}>TCAS Timeline</h4>
+      <h4 style={{ fontSize: 19, fontWeight: 700, marginBottom: 12 }}>TCAS Timeline</h4>
       <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 16, WebkitOverflowScrolling: "touch" }}>
         {TCAS_R.map((t) => (
           <Gl key={t.r} style={{ flexShrink: 0, width: 185, padding: 16 }}>
-            <div style={{ fontSize: 22, fontWeight: 800, color: t.c }}>รอบ {t.r}</div>
-            <div style={{ fontSize: 13, fontWeight: 700, marginTop: 4 }}>{t.name}</div>
-            <div style={{ fontSize: 12, color: t.c, fontWeight: 600, marginTop: 3 }}>{t.m}</div>
-            <div style={{ fontSize: 12, color: C.su, marginTop: 6, lineHeight: 1.5 }}>{t.d}</div>
+            <div style={{ fontSize: 26, fontWeight: 800, color: t.c }}>รอบ {t.r}</div>
+            <div style={{ fontSize: 16, fontWeight: 700, marginTop: 4 }}>{t.name}</div>
+            <div style={{ fontSize: 15, color: t.c, fontWeight: 600, marginTop: 3 }}>{t.m}</div>
+            <div style={{ fontSize: 15, color: C.su, marginTop: 6, lineHeight: 1.5 }}>{t.d}</div>
           </Gl>
         ))}
       </div>
-      <h4 style={{ fontSize: 16, fontWeight: 700, margin: "20px 0 12px" }}>ตารางเปรียบเทียบ</h4>
+      <h4 style={{ fontSize: 19, fontWeight: 700, margin: "20px 0 12px" }}>ตารางเปรียบเทียบ</h4>
       <div style={{ overflowX: "auto", paddingBottom: 12 }}>
-        <table style={{ borderCollapse: "separate", borderSpacing: 0, fontSize: 11, minWidth: 500, width: "100%" }}>
+        <table style={{ borderCollapse: "separate", borderSpacing: 0, fontSize: 14, minWidth: 500, width: "100%" }}>
           <thead>
             <tr style={{ background: C.li }}>
               {["เส้นทาง", "เวลา", "ค่าใช้จ่าย", "วุฒิที่ได้", "ม.ไทย", "ม.เทศ"].map((h) => (
@@ -722,8 +722,8 @@ function FinDetail() {
   const [op, setOp] = useState<Record<number, boolean>>({});
   return (
     <div style={{ padding: "24px 20px 60px" }}>
-      <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 6 }}>การเงินส่วนบุคคล</h3>
-      <p style={{ fontSize: 14, color: C.su, lineHeight: 1.6, marginBottom: 16 }}>รู้เร็ว เริ่มเร็ว ชีวิตดีกว่า · แตะแต่ละชั้นพีระมิดเพื่อดูรายละเอียด</p>
+      <h3 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6 }}>การเงินส่วนบุคคล</h3>
+      <p style={{ fontSize: 17, color: C.su, lineHeight: 1.6, marginBottom: 16 }}>รู้เร็ว เริ่มเร็ว ชีวิตดีกว่า · แตะแต่ละชั้นพีระมิดเพื่อดูรายละเอียด</p>
       {PYR.map((lv, i) => (
         <div key={lv.l}>
           <div
@@ -740,17 +740,17 @@ function FinDetail() {
               border: "1.5px solid " + lv.c + (py === i ? "" : "30"),
             }}
           >
-            <div style={{ fontSize: 13, fontWeight: 700, color: py === i ? "#FFF" : lv.c }}>{lv.l}</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: py === i ? "#FFF" : lv.c }}>{lv.l}</div>
           </div>
           {py === i && (
             <Gl style={{ margin: "5px 0 4px", padding: 14, border: "1.5px solid " + lv.c + "20" }}>
-              <div style={{ fontSize: 13, lineHeight: 1.75 }}>{lv.d}</div>
+              <div style={{ fontSize: 16, lineHeight: 1.75 }}>{lv.d}</div>
             </Gl>
           )}
         </div>
       ))}
       <Gl style={{ padding: 18, marginTop: 16, marginBottom: 16 }}>
-        <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>กฎ 50-30-20</div>
+        <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 10 }}>กฎ 50-30-20</div>
         <div style={{ display: "flex", gap: 3, height: 22, borderRadius: 8, overflow: "hidden", marginBottom: 12 }}>
           <div style={{ flex: 50, background: C.green }} />
           <div style={{ flex: 30, background: C.blue }} />
@@ -759,17 +759,17 @@ function FinDetail() {
         {[["50%", "ค่าใช้จ่ายจำเป็น", C.green], ["30%", "ค่าใช้จ่ายที่ต้องการ", C.blue], ["20%", "ออมและลงทุน", C.gold]].map(([p, l, c]) => (
           <div key={l} style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 5 }}>
             <div style={{ width: 8, height: 8, borderRadius: 4, background: c, flexShrink: 0 }} />
-            <div style={{ fontSize: 13 }}>
+            <div style={{ fontSize: 16 }}>
               <strong>{p}</strong> — {l}
             </div>
           </div>
         ))}
-        <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.7, marginTop: 10 }}>
+        <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.7, marginTop: 10 }}>
           แนวคิดโดย Elizabeth Warren จาก Harvard แบ่งรายได้สุทธิ 3 กอง แก่นสำคัญคือ &quot;ออมก่อนใช้&quot; เพราะเงินที่เหลือมักไม่เคยเหลือจริง ๆ
         </p>
       </Gl>
-      <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>20 คู่ ก่อนเข้าสู่โลกการเงิน</h4>
-      <p style={{ fontSize: 12, color: C.su, marginBottom: 12 }}>แตะเพื่อดูมุมมองและข้อมูลที่ต้องรู้</p>
+      <h4 style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>20 คู่ ก่อนเข้าสู่โลกการเงิน</h4>
+      <p style={{ fontSize: 15, color: C.su, marginBottom: 12 }}>แตะเพื่อดูมุมมองและข้อมูลที่ต้องรู้</p>
       {VS.map(([l, r, sh, dt], i) => (
         <div
           key={i}
@@ -787,9 +787,9 @@ function FinDetail() {
         >
           {!op[i] ? (
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <span style={{ flex: 1, fontSize: 13, fontWeight: 600, textAlign: "center" }}>{l}</span>
+              <span style={{ flex: 1, fontSize: 16, fontWeight: 600, textAlign: "center" }}>{l}</span>
               <ArrowLeftRight size={12} color={C.gold} strokeWidth={2} />
-              <span style={{ flex: 1, fontSize: 13, fontWeight: 600, textAlign: "center" }}>{r}</span>
+              <span style={{ flex: 1, fontSize: 16, fontWeight: 600, textAlign: "center" }}>{r}</span>
             </div>
           ) : (
             <div className="expand-enter">
@@ -799,9 +799,9 @@ function FinDetail() {
               </div>
               <div style={{ display: "flex", gap: 8, marginBottom: 5 }}>
                 <Lightbulb size={14} color={C.gold} style={{ flexShrink: 0, marginTop: 2 }} strokeWidth={1.5} />
-                <div style={{ fontSize: 13, fontWeight: 600 }}>{sh}</div>
+                <div style={{ fontSize: 16, fontWeight: 600 }}>{sh}</div>
               </div>
-              <div style={{ fontSize: 13, color: C.su, lineHeight: 1.6, paddingLeft: 22 }}>{dt}</div>
+              <div style={{ fontSize: 16, color: C.su, lineHeight: 1.6, paddingLeft: 22 }}>{dt}</div>
             </div>
           )}
         </div>
@@ -826,7 +826,7 @@ function SexDetail() {
     if (i === 0)
       return (
         <div>
-          <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>ฐานความรู้ที่ต้องมีก่อนทุกอย่าง เด็กที่รู้จักร่างกายตัวเองถูกต้องจะถูกหลอกหรือทำร้ายได้ยากกว่า</p>
+          <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>ฐานความรู้ที่ต้องมีก่อนทุกอย่าง เด็กที่รู้จักร่างกายตัวเองถูกต้องจะถูกหลอกหรือทำร้ายได้ยากกว่า</p>
           {[
             ["กายวิภาคที่ถูกต้อง", "ชื่อเรียกอวัยวะตามหลักการแพทย์ ทั้งชาย หญิง และอินเตอร์เซ็กซ์ ไม่ใช้คำแทนที่อาย"],
             ["วัยรุ่นและฮอร์โมน", "ฮอร์โมนเพศทำงานยังไง ทำไมร่างกายและอารมณ์เปลี่ยน"],
@@ -835,8 +835,8 @@ function SexDetail() {
             ["การเปลี่ยนแปลงที่หลากหลาย", "เด็กแต่ละคนเข้าสู่วัยรุ่นเร็วช้าต่างกัน ไม่มีผิดปกติ"],
           ].map(([h, d]) => (
             <div key={h} style={{ padding: "10px 0", borderBottom: "1px solid " + C.ln }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: C.pink, marginBottom: 3 }}>{h}</div>
-              <div style={{ fontSize: 13, lineHeight: 1.6 }}>{d}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: C.pink, marginBottom: 3 }}>{h}</div>
+              <div style={{ fontSize: 16, lineHeight: 1.6 }}>{d}</div>
             </div>
           ))}
         </div>
@@ -845,7 +845,7 @@ function SexDetail() {
       return (
         <div>
           <div style={{ background: C.purple + "08", borderRadius: 14, padding: 14, marginBottom: 14 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: C.purple, marginBottom: 6 }}>เพศกำเนิด ≠ อัตลักษณ์ทางเพศ ≠ รสนิยมทางเพศ</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: C.purple, marginBottom: 6 }}>เพศกำเนิด ≠ อัตลักษณ์ทางเพศ ≠ รสนิยมทางเพศ</div>
             {[
               ["เพศกำเนิด", "ลักษณะทางชีววิทยา", "ชาย หญิง อินเตอร์เซ็กซ์"],
               ["อัตลักษณ์ทางเพศ", "ความรู้สึกภายในว่าเป็นใคร", "ชาย หญิง นอนไบนารี ทรานส์"],
@@ -855,7 +855,7 @@ function SexDetail() {
               <div key={a} style={{ display: "flex", gap: 8, marginBottom: 6 }}>
                 <div style={{ width: 3, borderRadius: 2, background: C.purple, flexShrink: 0 }} />
                 <div>
-                  <strong style={{ fontSize: 12 }}>{a}</strong> <span style={{ fontSize: 12, color: C.su }}>({b}) — {c}</span>
+                  <strong style={{ fontSize: 15 }}>{a}</strong> <span style={{ fontSize: 15, color: C.su }}>({b}) — {c}</span>
                 </div>
               </div>
             ))}
@@ -864,15 +864,15 @@ function SexDetail() {
             {LGBT_DATA.map((l) => (
               <div key={l.k} style={{ background: l.c + "12", borderRadius: 12, padding: "10px 12px", border: "1px solid " + l.c + "25" }}>
                 <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 4 }}>
-                  <span style={{ width: 24, height: 24, borderRadius: 8, background: l.c, color: "#FFF", fontSize: 11, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{l.k}</span>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: l.c }}>{l.n}</span>
+                  <span style={{ width: 24, height: 24, borderRadius: 8, background: l.c, color: "#FFF", fontSize: 14, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{l.k}</span>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: l.c }}>{l.n}</span>
                 </div>
-                <div style={{ fontSize: 11, color: C.tx, marginBottom: 2 }}>{l.d}</div>
-                <div style={{ fontSize: 10, color: C.su }}>{l.note}</div>
+                <div style={{ fontSize: 14, color: C.tx, marginBottom: 2 }}>{l.d}</div>
+                <div style={{ fontSize: 13, color: C.su }}>{l.note}</div>
               </div>
             ))}
           </div>
-          <div style={{ background: C.purple + "08", borderRadius: 12, padding: 12, fontSize: 13, lineHeight: 1.6 }}>
+          <div style={{ background: C.purple + "08", borderRadius: 12, padding: 12, fontSize: 16, lineHeight: 1.6 }}>
             Coming out ไม่ใช่หน้าที่ ไม่มีใครต้องประกาศถ้าตัวเองยังไม่พร้อม การ bully เรื่องเพศมีผลต่อสุขภาพจิตจริงและมีผลทางกฎหมาย
           </div>
         </div>
@@ -883,39 +883,39 @@ function SexDetail() {
           <div style={{ marginBottom: 16 }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 12 }}>
               <div style={{ background: C.green + "10", borderRadius: 12, padding: 12 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: C.green, marginBottom: 6 }}>ความสัมพันธ์ที่ดี</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: C.green, marginBottom: 6 }}>ความสัมพันธ์ที่ดี</div>
                 {["เคารพขอบเขตกันและกัน", "สื่อสารตรง ๆ ได้", "รู้สึกปลอดภัย", "เป็นตัวเองได้", "รู้สึกดีขึ้นเมื่ออยู่ด้วย"].map((x) => (
-                  <div key={x} style={{ fontSize: 11, marginBottom: 3 }}>✓ {x}</div>
+                  <div key={x} style={{ fontSize: 14, marginBottom: 3 }}>✓ {x}</div>
                 ))}
               </div>
               <div style={{ background: C.red + "10", borderRadius: 12, padding: 12 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: C.red, marginBottom: 6 }}>ความสัมพันธ์ที่เป็นพิษ</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: C.red, marginBottom: 6 }}>ความสัมพันธ์ที่เป็นพิษ</div>
                 {["กดดัน บังคับ ขู่", "ต้องเดา ต้องทน", "รู้สึกกลัว เดินไข่", "ต้องเปลี่ยนตัวเองตลอด", "รู้สึกเหนื่อยและหมดแรง"].map((x) => (
-                  <div key={x} style={{ fontSize: 11, marginBottom: 3 }}>✗ {x}</div>
+                  <div key={x} style={{ fontSize: 14, marginBottom: 3 }}>✗ {x}</div>
                 ))}
               </div>
             </div>
             <div style={{ background: "linear-gradient(135deg,#3A0512,#5C0E21)", borderRadius: 16, padding: 18, marginBottom: 12 }}>
-              <div style={{ fontSize: 14, fontWeight: 800, color: "#FFF", textAlign: "center", marginBottom: 14, letterSpacing: ".05em" }}>กฎ FRIES ของความยินยอม</div>
+              <div style={{ fontSize: 17, fontWeight: 800, color: "#FFF", textAlign: "center", marginBottom: 14, letterSpacing: ".05em" }}>กฎ FRIES ของความยินยอม</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {FRIES_DATA.map((f) => (
                   <div key={f.k} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                     <div style={{ width: 32, height: 32, borderRadius: 10, background: f.c, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <span style={{ fontSize: 14, fontWeight: 900, color: "#FFF" }}>{f.k}</span>
+                      <span style={{ fontSize: 17, fontWeight: 900, color: "#FFF" }}>{f.k}</span>
                     </div>
                     <div>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: "#FFF" }}>
-                        {f.full} <span style={{ fontSize: 11, color: "rgba(255,255,255,.6)" }}>— {f.th}</span>
+                      <div style={{ fontSize: 16, fontWeight: 700, color: "#FFF" }}>
+                        {f.full} <span style={{ fontSize: 14, color: "rgba(255,255,255,.6)" }}>— {f.th}</span>
                       </div>
-                      <div style={{ fontSize: 11, color: "rgba(255,255,255,.7)", marginTop: 2 }}>{f.d}</div>
+                      <div style={{ fontSize: 14, color: "rgba(255,255,255,.7)", marginTop: 2 }}>{f.d}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             <div style={{ background: C.red + "08", borderRadius: 12, padding: 12, border: "1px solid " + C.red + "20" }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: C.red, marginBottom: 4 }}>ข้อกฎหมายสำคัญ</div>
-              <div style={{ fontSize: 13, lineHeight: 1.6 }}>เด็กต่ำกว่า 15 ปีในไทยไม่สามารถให้ความยินยอมทางเพศได้ตามกฎหมาย แม้ตัวเองจะรู้สึกว่าเต็มใจก็ตาม คู่กรณีมีความผิดทางอาญาทันที</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: C.red, marginBottom: 4 }}>ข้อกฎหมายสำคัญ</div>
+              <div style={{ fontSize: 16, lineHeight: 1.6 }}>เด็กต่ำกว่า 15 ปีในไทยไม่สามารถให้ความยินยอมทางเพศได้ตามกฎหมาย แม้ตัวเองจะรู้สึกว่าเต็มใจก็ตาม คู่กรณีมีความผิดทางอาญาทันที</div>
             </div>
           </div>
         </div>
@@ -923,11 +923,11 @@ function SexDetail() {
     if (i === 3)
       return (
         <div>
-          <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>ความรู้ที่ป้องกันชีวิตได้จริง ไม่ใช่การส่งเสริมให้มีเพศสัมพันธ์ แต่เพื่อให้รู้จักป้องกันตัวเองเมื่อถึงเวลา</p>
+          <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>ความรู้ที่ป้องกันชีวิตได้จริง ไม่ใช่การส่งเสริมให้มีเพศสัมพันธ์ แต่เพื่อให้รู้จักป้องกันตัวเองเมื่อถึงเวลา</p>
           {STI_DATA.map(([h, d]) => (
             <div key={h} style={{ padding: "10px 0", borderBottom: "1px solid " + C.ln }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: C.green, marginBottom: 3 }}>{h}</div>
-              <div style={{ fontSize: 13, lineHeight: 1.6 }}>{d}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: C.green, marginBottom: 3 }}>{h}</div>
+              <div style={{ fontSize: 16, lineHeight: 1.6 }}>{d}</div>
             </div>
           ))}
         </div>
@@ -935,7 +935,7 @@ function SexDetail() {
     if (i === 4)
       return (
         <div>
-          <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>ภัยที่เด็กยุคนี้เจอมากที่สุดแต่รู้น้อยที่สุด</p>
+          <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>ภัยที่เด็กยุคนี้เจอมากที่สุดแต่รู้น้อยที่สุด</p>
           <div style={{ marginBottom: 16 }}>
             {[
               ["Pornography", "ภาพลักษณ์ในสื่อลามกไม่ตรงกับความจริง", "ความยินยอม ร่างกาย ความสัมพันธ์จริง ๆ ไม่เป็นแบบนั้น", C.purple],
@@ -947,17 +947,17 @@ function SexDetail() {
               <div key={danger} style={{ background: c + "0a", borderRadius: 12, padding: "10px 12px", marginBottom: 6, border: "1px solid " + c + "25" }}>
                 <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
                   <div style={{ background: c, borderRadius: 8, padding: "3px 8px", flexShrink: 0 }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: "#FFF" }}>{danger}</span>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: "#FFF" }}>{danger}</span>
                   </div>
                   <div>
-                    <div style={{ fontSize: 12, fontWeight: 600, marginBottom: 2 }}>{desc}</div>
-                    <div style={{ fontSize: 11, color: C.su, lineHeight: 1.45 }}>{note}</div>
+                    <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 2 }}>{desc}</div>
+                    <div style={{ fontSize: 14, color: C.su, lineHeight: 1.45 }}>{note}</div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: C.tx, marginBottom: 8 }}>จำลองการ Grooming — รู้เท่าทันก่อนตกเป็นเหยื่อ</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: C.tx, marginBottom: 8 }}>จำลองการ Grooming — รู้เท่าทันก่อนตกเป็นเหยื่อ</div>
           {[
             { type: "sys", msg: "[Grooming เริ่มต้น]", sub: "ผู้ล่อลวงมักปลอมตัวเป็นคนอายุใกล้เคียงและมีความสนใจเหมือนกัน" },
             ["left", "สวัสดี อยากคุยด้วยได้มั้ย ผมชอบเกมเดียวกันเลย"],
@@ -979,20 +979,20 @@ function SexDetail() {
                       border: "1px solid " + (item.type === "danger" ? C.red + "30" : C.ln),
                       borderRadius: 20,
                       padding: "4px 12px",
-                      fontSize: 11,
+                      fontSize: 14,
                       color: item.type === "danger" ? C.red : C.su,
                       fontWeight: 600,
                     }}
                   >
                     {item.msg}
                   </div>
-                  {item.sub && <div style={{ fontSize: 10, color: C.su, marginTop: 2 }}>{item.sub}</div>}
+                  {item.sub && <div style={{ fontSize: 13, color: C.su, marginTop: 2 }}>{item.sub}</div>}
                 </div>
               );
             }
             return (
               <div key={idx} style={{ display: "flex", justifyContent: "flex-start", marginBottom: 6 }}>
-                <div style={{ background: C.li, borderRadius: "18px 18px 18px 4px", padding: "8px 12px", maxWidth: "75%", fontSize: 13, lineHeight: 1.5 }}>{(item as string[])[1]}</div>
+                <div style={{ background: C.li, borderRadius: "18px 18px 18px 4px", padding: "8px 12px", maxWidth: "75%", fontSize: 16, lineHeight: 1.5 }}>{(item as string[])[1]}</div>
               </div>
             );
           })}
@@ -1004,13 +1004,13 @@ function SexDetail() {
           <div style={{ marginBottom: 14 }}>
             {LAW_DATA.map(([h, d]) => (
               <div key={h} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid " + C.ln, gap: 8 }}>
-                <div style={{ fontSize: 13, fontWeight: 600, flex: 1 }}>{h}</div>
-                <div style={{ fontSize: 12, color: C.blue, textAlign: "right", flexShrink: 0, maxWidth: "55%" }}>{d}</div>
+                <div style={{ fontSize: 16, fontWeight: 600, flex: 1 }}>{h}</div>
+                <div style={{ fontSize: 15, color: C.blue, textAlign: "right", flexShrink: 0, maxWidth: "55%" }}>{d}</div>
               </div>
             ))}
           </div>
-          <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 10 }}>กรณีศึกษา</div>
-          <p style={{ fontSize: 12, color: C.su, marginBottom: 12 }}>หมายเหตุ: ทุกเคสเป็นเรื่องสมมติ สร้างขึ้นเพื่อการเรียนรู้</p>
+          <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>กรณีศึกษา</div>
+          <p style={{ fontSize: 15, color: C.su, marginBottom: 12 }}>หมายเหตุ: ทุกเคสเป็นเรื่องสมมติ สร้างขึ้นเพื่อการเรียนรู้</p>
           {CASES.map((c, ci) => (
             <div
               key={ci}
@@ -1027,10 +1027,10 @@ function SexDetail() {
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 700 }}>{c.title}</div>
+                  <div style={{ fontSize: 16, fontWeight: 700 }}>{c.title}</div>
                   <div style={{ display: "flex", gap: 4, marginTop: 4 }}>
                     {c.tags.map((t) => (
-                      <span key={t} style={{ background: C.blue + "14", color: C.blue, borderRadius: 999, padding: "2px 8px", fontSize: 10, fontWeight: 600 }}>
+                      <span key={t} style={{ background: C.blue + "14", color: C.blue, borderRadius: 999, padding: "2px 8px", fontSize: 13, fontWeight: 600 }}>
                         {t}
                       </span>
                     ))}
@@ -1040,18 +1040,18 @@ function SexDetail() {
               </div>
               {openCase === ci && (
                 <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid " + C.ln }}>
-                  <p style={{ fontSize: 13, lineHeight: 1.7, marginBottom: 8 }}>{c.story}</p>
+                  <p style={{ fontSize: 16, lineHeight: 1.7, marginBottom: 8 }}>{c.story}</p>
                   <div style={{ background: C.red + "08", borderRadius: 10, padding: 10, border: "1px solid " + C.red + "20", marginBottom: 10 }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: C.red, marginBottom: 4 }}>กฎหมายที่เกี่ยวข้อง</div>
-                    <div style={{ fontSize: 12, lineHeight: 1.6 }}>{c.law}</div>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: C.red, marginBottom: 4 }}>กฎหมายที่เกี่ยวข้อง</div>
+                    <div style={{ fontSize: 15, lineHeight: 1.6 }}>{c.law}</div>
                   </div>
                   {c.q && (
                     <div style={{ background: C.blue + "08", borderRadius: 10, padding: 10, border: "1px solid " + C.blue + "20" }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: C.blue, marginBottom: 8 }}>คำถามสำหรับถกเถียง</div>
+                      <div style={{ fontSize: 15, fontWeight: 700, color: C.blue, marginBottom: 8 }}>คำถามสำหรับถกเถียง</div>
                       {c.q.map((q, qi) => (
                         <div key={qi} style={{ display: "flex", gap: 6, marginBottom: 5 }}>
-                          <span style={{ fontSize: 12, fontWeight: 700, color: C.blue, flexShrink: 0, minWidth: 16 }}>{["ก", "ข", "ค", "ง", "จ", "ฉ"][qi]}.</span>
-                          <span style={{ fontSize: 12, lineHeight: 1.55 }}>{q}</span>
+                          <span style={{ fontSize: 15, fontWeight: 700, color: C.blue, flexShrink: 0, minWidth: 16 }}>{["ก", "ข", "ค", "ง", "จ", "ฉ"][qi]}.</span>
+                          <span style={{ fontSize: 15, lineHeight: 1.55 }}>{q}</span>
                         </div>
                       ))}
                     </div>
@@ -1062,7 +1062,7 @@ function SexDetail() {
           ))}
           <Gl style={{ padding: 14, marginTop: 8, display: "flex", gap: 10, alignItems: "center" }}>
             <AlertTriangle size={16} color={C.red} strokeWidth={1.5} />
-            <div style={{ fontSize: 12 }}>
+            <div style={{ fontSize: 15 }}>
               ถ้าเกิดเหตุ: <strong>อย่าลบหลักฐาน</strong> ถ่ายหน้าจอเก็บไว้ แล้วโทร <strong>1300</strong> หรือแจ้งความ
             </div>
           </Gl>
@@ -1073,15 +1073,15 @@ function SexDetail() {
 
   return (
     <div style={{ padding: "24px 20px 60px" }}>
-      <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 6 }}>เพศศึกษา</h3>
-      <p style={{ fontSize: 14, color: C.su, lineHeight: 1.6, marginBottom: 20 }}>ความรู้ที่ถูกต้องคือเกราะป้องกันที่ดีที่สุด แตะแต่ละหัวข้อเพื่อดูเนื้อหา</p>
+      <h3 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6 }}>เพศศึกษา</h3>
+      <p style={{ fontSize: 17, color: C.su, lineHeight: 1.6, marginBottom: 20 }}>ความรู้ที่ถูกต้องคือเกราะป้องกันที่ดีที่สุด แตะแต่ละหัวข้อเพื่อดูเนื้อหา</p>
       {units.map((u, i) => (
         <Gl key={u.t} onClick={() => setS(s === i ? null : i)} style={{ padding: "14px 16px", marginBottom: 8, cursor: "pointer", border: s === i ? "1.5px solid " + u.c + "30" : "1px solid rgba(255,255,255,.5)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, flexShrink: 0, background: u.c + "10", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <u.Icon size={18} color={u.c} strokeWidth={1.5} />
             </div>
-            <div style={{ flex: 1, fontSize: 14, fontWeight: 700 }}>{u.t}</div>
+            <div style={{ flex: 1, fontSize: 17, fontWeight: 700 }}>{u.t}</div>
             <ChevronRight size={14} color={C.su} style={{ transform: s === i ? "rotate(90deg)" : "none", transition: `transform .25s ${EASE_MORPH}` }} />
           </div>
           <div style={{ overflow: "hidden", maxHeight: s === i ? "3000px" : "0", transition: `max-height .4s ${EASE_REVEAL}` }}>
@@ -1094,8 +1094,8 @@ function SexDetail() {
       <Gl style={{ padding: 14, marginTop: 4, display: "flex", gap: 10, alignItems: "center" }}>
         <Phone size={16} color={C.pink} strokeWidth={1.5} />
         <div>
-          <div style={{ fontSize: 12, color: C.pink, fontWeight: 700 }}>ขอความช่วยเหลือ</div>
-          <div style={{ fontSize: 13, marginTop: 2 }}>
+          <div style={{ fontSize: 15, color: C.pink, fontWeight: 700 }}>ขอความช่วยเหลือ</div>
+          <div style={{ fontSize: 16, marginTop: 2 }}>
             สายด่วน <strong>1300</strong> / <strong>1323</strong> / มูลนิธิปวีณา <strong>02-802-2599</strong>
           </div>
         </div>
@@ -1147,18 +1147,18 @@ function MentalDetail() {
     if (k === "ground")
       return (
         <div style={{ padding: "10px 0" }}>
-          <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>เมื่อวิตกกังวลจนจิตล่องลอย ให้สำรวจสิ่งรอบตัว เพื่อดึงสมองกลับมาอยู่กับปัจจุบัน</p>
+          <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.6, marginBottom: 14 }}>เมื่อวิตกกังวลจนจิตล่องลอย ให้สำรวจสิ่งรอบตัว เพื่อดึงสมองกลับมาอยู่กับปัจจุบัน</p>
           {[["5", "สิ่งที่มองเห็น", C.blue], ["4", "สิ่งที่สัมผัสได้", C.green], ["3", "เสียงที่ได้ยิน", C.gold], ["2", "กลิ่นที่ได้กลิ่น", C.pink], ["1", "รสชาติที่รู้สึก", C.purple]].map(([n, l, c]) => (
             <div key={n} style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 8 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: c + "14", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, fontWeight: 800, color: c, flexShrink: 0 }}>{n}</div>
-              <div style={{ fontSize: 14, fontWeight: 600 }}>{l}</div>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: c + "14", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 800, color: c, flexShrink: 0 }}>{n}</div>
+              <div style={{ fontSize: 17, fontWeight: 600 }}>{l}</div>
             </div>
           ))}
         </div>
       );
     return (
       <div style={{ padding: "10px 0" }}>
-        <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.7 }}>
+        <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.7 }}>
           กำหนด 15 นาทีต่อวันสำหรับกังวลโดยเฉพาะ นอกจากนั้นถ้าความคิดวิตกเข้ามา ให้จดลงกระดาษแล้วบอกตัวเองว่าเก็บไว้คิดตอน Worry Time เมื่อถึงเวลาให้คิดอย่างจริงจัง แต่พอครบ 15 นาทีหยุดทันที
         </p>
       </div>
@@ -1167,14 +1167,14 @@ function MentalDetail() {
 
   return (
     <div style={{ padding: "24px 20px 60px" }}>
-      <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 6 }}>สุขภาพจิต</h3>
-      <p style={{ fontSize: 14, color: C.su, lineHeight: 1.6, marginBottom: 16 }}>ความเครียดไม่ใช่ศัตรู แต่ความเครียดที่ไม่ได้จัดการคือปัญหา</p>
+      <h3 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6 }}>สุขภาพจิต</h3>
+      <p style={{ fontSize: 17, color: C.su, lineHeight: 1.6, marginBottom: 16 }}>ความเครียดไม่ใช่ศัตรู แต่ความเครียดที่ไม่ได้จัดการคือปัญหา</p>
       <Gl style={{ padding: 16, marginBottom: 12 }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
           {[["Eustress (ดี)", "กดดันพอให้ลงมือทำ ตื่นเต้นก่อนนำเสนอ หายหลังผ่านเหตุการณ์", C.green], ["Distress (เสีย)", "กดดันจนทำอะไรไม่ได้ นอนไม่หลับหลายสัปดาห์ สะสมไม่หาย", C.red]].map(([h, d, c]) => (
             <div key={h} style={{ padding: 12, background: c + "08", borderRadius: 12 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: c, marginBottom: 4 }}>{h}</div>
-              <div style={{ fontSize: 12, color: C.tx, lineHeight: 1.5 }}>{d}</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: c, marginBottom: 4 }}>{h}</div>
+              <div style={{ fontSize: 15, color: C.tx, lineHeight: 1.5 }}>{d}</div>
             </div>
           ))}
         </div>
@@ -1188,14 +1188,14 @@ function MentalDetail() {
       ].map((item) => (
         <Gl key={item.k} onClick={() => setSec(sec === item.k ? null : item.k)} style={{ padding: "12px 14px", marginBottom: 6, cursor: "pointer", border: sec === item.k ? "1.5px solid " + C.purple + "30" : "1px solid rgba(255,255,255,.5)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: C.purple }}>{item.title}</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: C.purple }}>{item.title}</div>
             <ChevronRight size={13} color={C.su} style={{ transform: sec === item.k ? "rotate(90deg)" : "none", transition: `transform .25s ${EASE_MORPH}` }} />
           </div>
           <div style={{ overflow: "hidden", maxHeight: sec === item.k ? "2000px" : "0", transition: `max-height .4s ${EASE_REVEAL}` }} onClick={(e) => e.stopPropagation()}>
             <div style={{ marginTop: 10, paddingTop: 10, borderTop: "1px solid " + C.ln }}>
               {item.k === "what" && (
                 <div>
-                  <p style={{ fontSize: 13, lineHeight: 1.7, marginBottom: 12 }}>
+                  <p style={{ fontSize: 16, lineHeight: 1.7, marginBottom: 12 }}>
                     หลายคนได้ยินคำว่า &quot;สุขภาพจิต&quot; แล้วนึกถึงแต่คนที่ป่วยหนัก แต่จริง ๆ แล้วสุขภาพจิตคือสภาวะที่ทุกคนมีและเปลี่ยนแปลงได้ทุกวัน เหมือนสุขภาพร่างกายที่วันนึงอาจเป็นไข้ วันนึงหายดี
                   </p>
                   {[
@@ -1205,15 +1205,15 @@ function MentalDetail() {
                     ["สัญญาณที่ต้องสังเกต", "สุขภาพจิตที่ดีหน้าตาเป็นยังไง ไม่ดีหน้าตาเป็นยังไง"],
                   ].map(([h, d]) => (
                     <div key={h} style={{ padding: "8px 0", borderBottom: "1px solid " + C.ln }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: C.purple, marginBottom: 2 }}>{h}</div>
-                      <div style={{ fontSize: 12, lineHeight: 1.5 }}>{d}</div>
+                      <div style={{ fontSize: 15, fontWeight: 700, color: C.purple, marginBottom: 2 }}>{h}</div>
+                      <div style={{ fontSize: 15, lineHeight: 1.5 }}>{d}</div>
                     </div>
                   ))}
                 </div>
               )}
               {item.k === "emotion" && (
                 <div>
-                  <p style={{ fontSize: 13, lineHeight: 1.6, marginBottom: 12 }}>ไม่มีอารมณ์ไหนที่ &quot;ผิด&quot; แต่การแสดงออกบางอย่างอาจทำร้ายตัวเองหรือคนอื่นได้ ฝึกอ่านอารมณ์ตัวเองให้ละเอียดขึ้น</p>
+                  <p style={{ fontSize: 16, lineHeight: 1.6, marginBottom: 12 }}>ไม่มีอารมณ์ไหนที่ &quot;ผิด&quot; แต่การแสดงออกบางอย่างอาจทำร้ายตัวเองหรือคนอื่นได้ ฝึกอ่านอารมณ์ตัวเองให้ละเอียดขึ้น</p>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
                     {EMOTIONS.map(([name, c, subs], ei) => (
                       <div
@@ -1224,15 +1224,15 @@ function MentalDetail() {
                         }}
                         style={{ borderRadius: 12, padding: 10, background: c + "10", border: "1px solid " + c + "20", cursor: "pointer" }}
                       >
-                        <div style={{ fontSize: 13, fontWeight: 700, color: c, marginBottom: 4 }}>{name}</div>
+                        <div style={{ fontSize: 16, fontWeight: 700, color: c, marginBottom: 4 }}>{name}</div>
                         {em === ei ? (
                           subs.map((sub) => (
-                            <div key={sub} style={{ fontSize: 11, color: C.su, marginBottom: 2 }}>
+                            <div key={sub} style={{ fontSize: 14, color: C.su, marginBottom: 2 }}>
                               · {sub}
                             </div>
                           ))
                         ) : (
-                          <div style={{ fontSize: 11, color: C.su }}>แตะดูอารมณ์ที่ซ่อนอยู่</div>
+                          <div style={{ fontSize: 14, color: C.su }}>แตะดูอารมณ์ที่ซ่อนอยู่</div>
                         )}
                       </div>
                     ))}
@@ -1245,8 +1245,8 @@ function MentalDetail() {
                     <div key={src} style={{ display: "flex", gap: 10, padding: "8px 0", borderBottom: "1px solid " + C.ln }}>
                       <div style={{ width: 3, borderRadius: 2, background: C.purple, flexShrink: 0, alignSelf: "stretch" }} />
                       <div>
-                        <div style={{ fontSize: 12, fontWeight: 600 }}>{src}</div>
-                        <div style={{ fontSize: 11, color: C.su }}>{feel}</div>
+                        <div style={{ fontSize: 15, fontWeight: 600 }}>{src}</div>
+                        <div style={{ fontSize: 14, color: C.su }}>{feel}</div>
                       </div>
                     </div>
                   ))}
@@ -1256,16 +1256,16 @@ function MentalDetail() {
                 <div>
                   {TRAPS.map(([t, eg, r]) => (
                     <div key={t} style={{ padding: "8px 0", borderBottom: "1px solid " + C.ln }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: C.purple, marginBottom: 2 }}>{t}</div>
-                      <div style={{ fontSize: 11, color: C.su, marginBottom: 2 }}>ตัวอย่าง: &quot;{eg}&quot;</div>
-                      <div style={{ fontSize: 11, color: C.tx }}>ความจริง: {r}</div>
+                      <div style={{ fontSize: 15, fontWeight: 700, color: C.purple, marginBottom: 2 }}>{t}</div>
+                      <div style={{ fontSize: 14, color: C.su, marginBottom: 2 }}>ตัวอย่าง: &quot;{eg}&quot;</div>
+                      <div style={{ fontSize: 14, color: C.tx }}>ความจริง: {r}</div>
                     </div>
                   ))}
                 </div>
               )}
               {item.k === "social" && (
                 <div>
-                  <p style={{ fontSize: 13, lineHeight: 1.6, marginBottom: 10 }}>โซเชียลมีเดียไม่ใช่ศัตรู แต่ถ้าใช้แบบไม่รู้ทัน มันดูดพลังงานและความมั่นใจออกไปโดยที่ไม่รู้สึกตัว</p>
+                  <p style={{ fontSize: 16, lineHeight: 1.6, marginBottom: 10 }}>โซเชียลมีเดียไม่ใช่ศัตรู แต่ถ้าใช้แบบไม่รู้ทัน มันดูดพลังงานและความมั่นใจออกไปโดยที่ไม่รู้สึกตัว</p>
                   {[
                     ["Doomscrolling ก่อนนอน", "รบกวนการนอนหลับ สมองตื่นตัวในเวลาที่ควรพัก"],
                     ["เปรียบตัวเองกับคนที่ดูสำเร็จ", "ความมั่นใจลดลง แม้จะรู้ว่าภาพนั้นถูกคัดมา"],
@@ -1273,8 +1273,8 @@ function MentalDetail() {
                     ["Passive scrolling นาน ๆ", "รู้สึกเปล่าว่างและสูญเสียเวลา"],
                   ].map(([b, e]) => (
                     <div key={b} style={{ padding: "6px 0", borderBottom: "1px solid " + C.ln }}>
-                      <div style={{ fontSize: 12, fontWeight: 600 }}>{b}</div>
-                      <div style={{ fontSize: 11, color: C.su }}>{e}</div>
+                      <div style={{ fontSize: 15, fontWeight: 600 }}>{b}</div>
+                      <div style={{ fontSize: 14, color: C.su }}>{e}</div>
                     </div>
                   ))}
                 </div>
@@ -1284,7 +1284,7 @@ function MentalDetail() {
         </Gl>
       ))}
       <div style={{ height: 1, background: C.ln, margin: "16px 0" }} />
-      <div style={{ fontSize: 14, fontWeight: 700, color: C.purple, marginBottom: 12 }}>เครื่องมือ 6 อย่างที่ใช้ได้จริง</div>
+      <div style={{ fontSize: 17, fontWeight: 700, color: C.purple, marginBottom: 12 }}>เครื่องมือ 6 อย่างที่ใช้ได้จริง</div>
       {tools.map((t) => (
         <Gl key={t.k} onClick={() => setTl(tl === t.k ? null : t.k)} style={{ padding: "14px 16px", marginBottom: 8, cursor: "pointer", border: tl === t.k ? "1.5px solid " + C.purple + "30" : "1px solid rgba(255,255,255,.5)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -1292,8 +1292,8 @@ function MentalDetail() {
               <t.Icon size={18} color={C.purple} strokeWidth={1.5} />
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontWeight: 700 }}>{t.n}</div>
-              <div style={{ fontSize: 12, color: C.su }}>{t.d}</div>
+              <div style={{ fontSize: 17, fontWeight: 700 }}>{t.n}</div>
+              <div style={{ fontSize: 15, color: C.su }}>{t.d}</div>
             </div>
             <ChevronRight size={14} color={C.su} style={{ transform: tl === t.k ? "rotate(90deg)" : "none", transition: `transform .25s ${EASE_MORPH}` }} />
           </div>
@@ -1304,12 +1304,12 @@ function MentalDetail() {
           )}
         </Gl>
       ))}
-      <h4 style={{ fontSize: 15, fontWeight: 700, margin: "16px 0 10px" }}>ขอความช่วยเหลือ</h4>
+      <h4 style={{ fontSize: 18, fontWeight: 700, margin: "16px 0 10px" }}>ขอความช่วยเหลือ</h4>
       {[["1323", "กรมสุขภาพจิต", "โทรฟรี 24 ชม.", C.purple], ["1300", "กระทรวง พม.", "คุ้มครองเด็กและสตรี", C.pink], ["1387", "สายด่วนสุขภาพ", "กรมการแพทย์", C.green]].map(([n, nm, d, c]) => (
         <Gl key={n} style={{ padding: "10px 14px", marginBottom: 6, display: "flex", alignItems: "center", gap: 10 }}>
           <Phone size={16} color={c} strokeWidth={1.5} />
-          <span style={{ fontSize: 18, fontWeight: 800, color: c }}>{n}</span>
-          <span style={{ fontSize: 12, color: C.su, marginLeft: 4 }}>
+          <span style={{ fontSize: 21, fontWeight: 800, color: c }}>{n}</span>
+          <span style={{ fontSize: 15, color: C.su, marginLeft: 4 }}>
             {nm} · {d}
           </span>
         </Gl>
@@ -1317,8 +1317,8 @@ function MentalDetail() {
       <Gl style={{ padding: "10px 14px", display: "flex", alignItems: "center", gap: 10 }}>
         <MessageCircle size={16} color={C.blue} strokeWidth={1.5} />
         <div>
-          <strong style={{ fontSize: 14 }}>Ooca</strong>
-          <span style={{ fontSize: 12, color: C.su }}> — แอปพลิเคชันปรึกษานักจิตวิทยาออนไลน์</span>
+          <strong style={{ fontSize: 17 }}>Ooca</strong>
+          <span style={{ fontSize: 15, color: C.su }}> — แอปพลิเคชันปรึกษานักจิตวิทยาออนไลน์</span>
         </div>
       </Gl>
     </div>
@@ -1332,11 +1332,11 @@ function MIDetail() {
   const tops = MI_D.filter((m) => (sc[m.n] || 0) >= 4);
   return (
     <div style={{ padding: "24px 20px 60px" }}>
-      <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 6 }}>พหุปัญญา 8 ด้าน</h3>
-      <p style={{ fontSize: 14, color: C.su, lineHeight: 1.6, marginBottom: 16 }}>Howard Gardner (Harvard 1983) พิสูจน์ว่าความฉลาดมี 8 ด้าน ทุกคนมีครบ แต่สัดส่วนต่างกัน ให้คะแนน 1-5</p>
+      <h3 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6 }}>พหุปัญญา 8 ด้าน</h3>
+      <p style={{ fontSize: 17, color: C.su, lineHeight: 1.6, marginBottom: 16 }}>Howard Gardner (Harvard 1983) พิสูจน์ว่าความฉลาดมี 8 ด้าน ทุกคนมีครบ แต่สัดส่วนต่างกัน ให้คะแนน 1-5</p>
       {tops.length > 0 && (
         <Gl style={{ padding: 14, marginBottom: 14, textAlign: "center" }}>
-          <div style={{ fontSize: 12, color: C.su, fontWeight: 600, marginBottom: 8 }}>ด้านที่คุณโดดเด่น</div>
+          <div style={{ fontSize: 15, color: C.su, fontWeight: 600, marginBottom: 8 }}>ด้านที่คุณโดดเด่น</div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "center" }}>
             {tops.map((m) => (
               <Pill key={m.n} label={m.n} color={m.c} />
@@ -1351,8 +1351,8 @@ function MIDetail() {
               <m.Icon size={16} color={m.c} strokeWidth={1.5} />
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 13, fontWeight: 700 }}>{m.n}</div>
-              <div style={{ fontSize: 11, color: C.su }}>{m.desc}</div>
+              <div style={{ fontSize: 16, fontWeight: 700 }}>{m.n}</div>
+              <div style={{ fontSize: 14, color: C.su }}>{m.desc}</div>
             </div>
             <ChevronRight size={13} color={C.su} style={{ transform: sel === i ? "rotate(90deg)" : "none", transition: `transform .25s ${EASE_MORPH}` }} />
           </div>
@@ -1361,7 +1361,7 @@ function MIDetail() {
               <button
                 key={n}
                 onClick={() => setSc((p) => ({ ...p, [m.n]: n }))}
-                style={{ flex: 1, height: 30, borderRadius: 8, border: "none", cursor: "pointer", fontFamily: F, fontSize: 12, fontWeight: 700, background: (sc[m.n] || 0) >= n ? m.c : C.li, color: (sc[m.n] || 0) >= n ? "#FFF" : C.su, transition: `all .15s ${EASE_MORPH}` }}
+                style={{ flex: 1, height: 30, borderRadius: 8, border: "none", cursor: "pointer", fontFamily: F, fontSize: 15, fontWeight: 700, background: (sc[m.n] || 0) >= n ? m.c : C.li, color: (sc[m.n] || 0) >= n ? "#FFF" : C.su, transition: `all .15s ${EASE_MORPH}` }}
               >
                 {n}
               </button>
@@ -1369,26 +1369,26 @@ function MIDetail() {
           </div>
           <div style={{ overflow: "hidden", maxHeight: sel === i ? "1000px" : "0", transition: `max-height .4s ${EASE_REVEAL}` }}>
             <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid " + C.ln }}>
-              <p style={{ fontSize: 13, lineHeight: 1.7, marginBottom: 8 }}>{m.detail}</p>
-              <div style={{ fontSize: 12, color: C.su }}>
+              <p style={{ fontSize: 16, lineHeight: 1.7, marginBottom: 8 }}>{m.detail}</p>
+              <div style={{ fontSize: 15, color: C.su }}>
                 สัญญาณ: <span style={{ color: C.tx }}>{m.signs}</span>
               </div>
-              <div style={{ fontSize: 12, color: C.su, marginTop: 4 }}>
+              <div style={{ fontSize: 15, color: C.su, marginTop: 4 }}>
                 อาชีพ: <span style={{ color: m.c }}>{m.jobs}</span>
               </div>
             </div>
           </div>
         </Gl>
       ))}
-      <h4 style={{ fontSize: 16, fontWeight: 700, margin: "20px 0 12px" }}>ทักษะสำคัญแห่งศตวรรษที่ 21</h4>
+      <h4 style={{ fontSize: 19, fontWeight: 700, margin: "20px 0 12px" }}>ทักษะสำคัญแห่งศตวรรษที่ 21</h4>
       {SK21.map(([n, c, d], i) => (
         <Gl key={n} onClick={() => setSk(sk === i ? null : i)} style={{ padding: "12px 14px", marginBottom: 6, cursor: "pointer", border: sk === i ? "1.5px solid " + c + "30" : "1px solid rgba(255,255,255,.5)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ flex: 1, fontSize: 13, fontWeight: 700, color: c }}>{n}</div>
+            <div style={{ flex: 1, fontSize: 16, fontWeight: 700, color: c }}>{n}</div>
             <ChevronRight size={13} color={C.su} style={{ transform: sk === i ? "rotate(90deg)" : "none", transition: `transform .25s ${EASE_MORPH}` }} />
           </div>
           <div style={{ overflow: "hidden", maxHeight: sk === i ? "500px" : "0", transition: `max-height .35s ${EASE_REVEAL}` }}>
-            <div style={{ marginTop: 10, paddingTop: 10, borderTop: "1px solid " + C.ln, fontSize: 13, lineHeight: 1.7 }}>{d}</div>
+            <div style={{ marginTop: 10, paddingTop: 10, borderTop: "1px solid " + C.ln, fontSize: 16, lineHeight: 1.7 }}>{d}</div>
           </div>
         </Gl>
       ))}
@@ -1399,24 +1399,24 @@ function MIDetail() {
 function TimeDetail() {
   return (
     <div style={{ padding: "24px 20px 60px" }}>
-      <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 6 }}>Time Blocking</h3>
-      <p style={{ fontSize: 14, color: C.su, lineHeight: 1.6, marginBottom: 20 }}>วิธีบริหารเวลาที่ดีกว่าการทำ To-do list</p>
+      <h3 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6 }}>Time Blocking</h3>
+      <p style={{ fontSize: 17, color: C.su, lineHeight: 1.6, marginBottom: 20 }}>วิธีบริหารเวลาที่ดีกว่าการทำ To-do list</p>
       <Gl style={{ padding: 18, marginBottom: 16 }}>
-        <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>ทำไมต้อง Time Blocking?</div>
-        <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.75, marginBottom: 10 }}>
+        <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 10 }}>ทำไมต้อง Time Blocking?</div>
+        <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.75, marginBottom: 10 }}>
           สมองมนุษย์ทำงานได้ดีที่สุดเมื่อโฟกัสทีละอย่าง งานวิจัยของ American Psychological Association พบว่า Multitasking ลดประสิทธิภาพลง 40% เพราะสมองต้องใช้พลังงานสลับระหว่างงานตลอดเวลา
         </p>
-        <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.75, marginBottom: 10 }}>
+        <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.75, marginBottom: 10 }}>
           To-do list บอกว่า &quot;ต้องทำอะไร&quot; แต่ไม่บอกว่า &quot;จะทำเมื่อไหร่&quot; ทำให้วันผ่านไปโดยรู้สึกยุ่งแต่ไม่ได้ผลิตผลจริง Time Blocking คือการ &quot;จอง&quot; เวลาในปฏิทินให้กับแต่ละงาน เหมือนนัดกับตัวเอง
         </p>
-        <p style={{ fontSize: 13, color: C.tx, lineHeight: 1.75 }}>Cal Newport จาก MIT พิสูจน์ว่า Deep Work 4 ชั่วโมงต่อวัน ให้ผลลัพธ์มากกว่าการทำงานตื้น ๆ 8-10 ชั่วโมงอย่างมีนัยสำคัญ</p>
+        <p style={{ fontSize: 16, color: C.tx, lineHeight: 1.75 }}>Cal Newport จาก MIT พิสูจน์ว่า Deep Work 4 ชั่วโมงต่อวัน ให้ผลลัพธ์มากกว่าการทำงานตื้น ๆ 8-10 ชั่วโมงอย่างมีนัยสำคัญ</p>
       </Gl>
-      <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>ตัวอย่างตารางวัน</h4>
+      <h4 style={{ fontSize: 18, fontWeight: 700, marginBottom: 10 }}>ตัวอย่างตารางวัน</h4>
       <CalendarDay />
-      <h4 style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>ภาพรวม 24 ชั่วโมง</h4>
+      <h4 style={{ fontSize: 18, fontWeight: 700, marginBottom: 10 }}>ภาพรวม 24 ชั่วโมง</h4>
       <Clock24h />
       <Gl style={{ padding: 18, marginBottom: 16 }}>
-        <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 14 }}>หมวดหมู่และทฤษฎีสี</div>
+        <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 14 }}>หมวดหมู่และทฤษฎีสี</div>
         {[
           ["การเรียนและพัฒนา", "#AF52DE", "ม่วง — กระตุ้นความคิดสร้างสรรค์และสมาธิ เหมาะกับ Deep Work ปิดการแจ้งเตือนทั้งหมดระหว่างบล็อกนี้"],
           ["อาหารและสุขภาพ", "#34C759", "เขียว — สื่อถึงชีวิตและความสมดุล ช่วยให้รู้สึกผ่อนคลาย เหมาะกับช่วงพักฟื้นพลังงาน"],
@@ -1428,18 +1428,18 @@ function TimeDetail() {
           <div key={l} style={{ marginBottom: 12 }}>
             <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 4 }}>
               <div style={{ width: 14, height: 14, borderRadius: 4, background: c, flexShrink: 0 }} />
-              <div style={{ fontSize: 13, fontWeight: 700 }}>{l}</div>
+              <div style={{ fontSize: 16, fontWeight: 700 }}>{l}</div>
             </div>
-            <div style={{ fontSize: 12, color: C.su, lineHeight: 1.55, paddingLeft: 22 }}>{d}</div>
+            <div style={{ fontSize: 15, color: C.su, lineHeight: 1.55, paddingLeft: 22 }}>{d}</div>
           </div>
         ))}
       </Gl>
       <Gl style={{ padding: 18 }}>
-        <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 10 }}>เริ่มต้นอย่างไร?</div>
+        <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>เริ่มต้นอย่างไร?</div>
         {["เริ่มจากบล็อกตายตัวก่อน ได้แก่ เวลานอน เวลากิน และเวลาเรียน", "เพิ่ม Buffer 15-30 นาทีระหว่างแต่ละบล็อกเพื่อรองรับความล่าช้า", "ทบทวนทุกสัปดาห์ว่าปฏิทินที่วางไว้ตรงกับความเป็นจริงหรือไม่", "อย่าพยายามทำให้สมบูรณ์แบบตั้งแต่วันแรก เริ่มจากกรอบหยาบ ๆ แล้วค่อยปรับ"].map((tip, i) => (
           <div key={i} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-            <div style={{ width: 22, height: 22, borderRadius: 6, background: C.orange + "14", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: C.orange, flexShrink: 0 }}>{i + 1}</div>
-            <div style={{ fontSize: 13, lineHeight: 1.5 }}>{tip}</div>
+            <div style={{ width: 22, height: 22, borderRadius: 6, background: C.orange + "14", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, color: C.orange, flexShrink: 0 }}>{i + 1}</div>
+            <div style={{ fontSize: 16, lineHeight: 1.5 }}>{tip}</div>
           </div>
         ))}
       </Gl>
@@ -1489,7 +1489,7 @@ function Overlay({ id, closing, onClose }: { id: string; closing: boolean; onClo
       >
         <button
           onClick={onClose}
-          style={{ background: C.li, border: "none", borderRadius: 999, padding: "8px 14px 8px 10px", fontSize: 14, fontWeight: 600, color: C.tx, cursor: "pointer", fontFamily: F, display: "flex", alignItems: "center", gap: 3 }}
+          style={{ background: C.li, border: "none", borderRadius: 999, padding: "8px 14px 8px 10px", fontSize: 17, fontWeight: 600, color: C.tx, cursor: "pointer", fontFamily: F, display: "flex", alignItems: "center", gap: 3 }}
         >
           <ChevronRight size={15} style={{ transform: "rotate(180deg)" }} /> กลับ
         </button>
@@ -1580,12 +1580,12 @@ export default function GuidanceApp() {
         <div style={ha(0.15)}>
           <Pill label="LEARN & GROW" />
         </div>
-        <h1 style={{ fontSize: "clamp(48px,12vw,84px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.045em", margin: "24px 0 0", ...ha(0.3) }}>
+        <h1 style={{ fontSize: "clamp(52px,12vw,88px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-.045em", margin: "24px 0 0", ...ha(0.3) }}>
           เรียนรู้
           <br />
           ที่จะ<span className="text-gradient-rp">เติบโต</span>
         </h1>
-        <p style={{ fontSize: "clamp(15px,3.5vw,18px)", color: C.su, lineHeight: 1.6, maxWidth: 360, margin: "16px 0 0", ...ha(0.45) }}>ก้าวต่อไปของชีวิต เริ่มต้นที่การรู้จักตัวเอง</p>
+        <p style={{ fontSize: "clamp(17px,4vw,20px)", color: C.su, lineHeight: 1.6, maxWidth: 360, margin: "16px 0 0", ...ha(0.45) }}>ก้าวต่อไปของชีวิต เริ่มต้นที่การรู้จักตัวเอง</p>
         <div style={{ marginTop: 36, display: "flex", flexDirection: "column", alignItems: "center", gap: 2, ...ha(0.6) }}>
           <ChevronDown size={20} color="#D2D2D7" />
           <ChevronDown size={20} color="#AEAEB2" />
@@ -1597,8 +1597,8 @@ export default function GuidanceApp() {
         <Gl style={{ maxWidth: 480, margin: "0 auto", padding: "22px 16px", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", textAlign: "center" }}>
           {[["6", "หัวข้อหลัก"], ["20+", "กิจกรรม"], ["∞", "ประโยชน์"]].map(([n, l]) => (
             <div key={l}>
-              <div style={{ fontSize: 28, fontWeight: 800, color: C.red }}>{n}</div>
-              <div style={{ fontSize: 12, color: C.su, marginTop: 3 }}>{l}</div>
+              <div style={{ fontSize: 32, fontWeight: 800, color: C.red }}>{n}</div>
+              <div style={{ fontSize: 15, color: C.su, marginTop: 3 }}>{l}</div>
             </div>
           ))}
         </Gl>
@@ -1606,10 +1606,10 @@ export default function GuidanceApp() {
 
       <section style={{ padding: "48px 0 56px", position: "relative", zIndex: 1 }}>
         <Rv>
-          <div style={{ textAlign: "center", fontSize: 13, fontWeight: 600, color: C.red, letterSpacing: ".08em", marginBottom: 8, textTransform: "uppercase" }}>EXPLORE</div>
+          <div style={{ textAlign: "center", fontSize: 16, fontWeight: 600, color: C.red, letterSpacing: ".08em", marginBottom: 8, textTransform: "uppercase" }}>EXPLORE</div>
         </Rv>
         <Rv delay={0.06}>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(26px,6vw,40px)", fontWeight: 800, letterSpacing: "-.03em", margin: "0 0 8px" }}>หัวข้อทั้งหมด</h2>
+          <h2 style={{ textAlign: "center", fontSize: "clamp(30px,6.5vw,44px)", fontWeight: 800, letterSpacing: "-.03em", margin: "0 0 8px" }}>หัวข้อทั้งหมด</h2>
         </Rv>
         <div ref={spotRef} onScroll={onScroll} className="spotRow">
           {TOPICS.map((t, i) => {
@@ -1637,8 +1637,8 @@ export default function GuidanceApp() {
                 <div style={{ width: 44, height: 44, borderRadius: 14, background: on ? t.color + "18" : C.li, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", transition: `all .3s ${EASE_MORPH}` }}>
                   <t.Icon size={20} color={on ? t.color : C.su} strokeWidth={1.5} />
                 </div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: on ? C.tx : C.su }}>{t.label}</div>
-                <div style={{ fontSize: 10, color: C.su, marginTop: 4, lineHeight: 1.3, opacity: on ? 1 : 0, transition: `opacity .3s ${EASE_MORPH}` }}>{t.sub}</div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: on ? C.tx : C.su }}>{t.label}</div>
+                <div style={{ fontSize: 13, color: C.su, marginTop: 4, lineHeight: 1.3, opacity: on ? 1 : 0, transition: `opacity .3s ${EASE_MORPH}` }}>{t.sub}</div>
                 <div style={{ marginTop: 8, width: 18, height: 3, borderRadius: 2, background: on ? t.color : "transparent", margin: "8px auto 0", transition: `background .3s ${EASE_MORPH}` }} />
               </div>
             );
@@ -1648,10 +1648,10 @@ export default function GuidanceApp() {
 
       <section style={{ padding: "0 0 52px" }}>
         <Rv>
-          <div style={{ textAlign: "center", fontSize: 13, fontWeight: 600, color: C.red, letterSpacing: ".08em", marginBottom: 8, textTransform: "uppercase" }}>CURRICULUM</div>
+          <div style={{ textAlign: "center", fontSize: 16, fontWeight: 600, color: C.red, letterSpacing: ".08em", marginBottom: 8, textTransform: "uppercase" }}>CURRICULUM</div>
         </Rv>
         <Rv delay={0.06}>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(24px,5vw,36px)", fontWeight: 800, letterSpacing: "-.03em", margin: "0 0 22px" }}>6 หัวข้อการเรียนรู้</h2>
+          <h2 style={{ textAlign: "center", fontSize: "clamp(28px,5.5vw,40px)", fontWeight: 800, letterSpacing: "-.03em", margin: "0 0 22px" }}>6 หัวข้อการเรียนรู้</h2>
         </Rv>
         {TOPICS.map((t, i) => {
           const r = toRgb(t.color);
@@ -1663,12 +1663,12 @@ export default function GuidanceApp() {
                     <t.Icon size={20} color={t.color} strokeWidth={1.5} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>{t.label}</div>
-                    <div style={{ fontSize: 12, color: C.su, marginBottom: 10 }}>{t.sub}</div>
+                    <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 4 }}>{t.label}</div>
+                    <div style={{ fontSize: 15, color: C.su, marginBottom: 10 }}>{t.sub}</div>
                     {t.preview.map((p, j) => (
                       <div key={j} style={{ display: "flex", gap: 6, alignItems: "flex-start", marginBottom: 3 }}>
                         <div style={{ width: 4, height: 4, borderRadius: 2, background: t.color, flexShrink: 0, marginTop: 6 }} />
-                        <div style={{ fontSize: 12, color: C.tx, lineHeight: 1.5 }}>{p}</div>
+                        <div style={{ fontSize: 15, color: C.tx, lineHeight: 1.5 }}>{p}</div>
                       </div>
                     ))}
                   </div>
@@ -1681,10 +1681,10 @@ export default function GuidanceApp() {
 
       <section style={{ padding: "52px 20px" }}>
         <Rv>
-          <div style={{ textAlign: "center", fontSize: 13, fontWeight: 600, color: C.red, letterSpacing: ".08em", marginBottom: 8, textTransform: "uppercase" }}>WHAT YOU GET</div>
+          <div style={{ textAlign: "center", fontSize: 16, fontWeight: 600, color: C.red, letterSpacing: ".08em", marginBottom: 8, textTransform: "uppercase" }}>WHAT YOU GET</div>
         </Rv>
         <Rv delay={0.06}>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(28px,6vw,42px)", fontWeight: 800, letterSpacing: "-.03em", margin: "0 0 32px" }}>สิ่งที่จะได้เรียนรู้</h2>
+          <h2 style={{ textAlign: "center", fontSize: "clamp(32px,6.5vw,46px)", fontWeight: 800, letterSpacing: "-.03em", margin: "0 0 32px" }}>สิ่งที่จะได้เรียนรู้</h2>
         </Rv>
         <div style={{ maxWidth: 480, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
           {[
@@ -1700,8 +1700,8 @@ export default function GuidanceApp() {
                 <div style={{ width: 48, height: 48, borderRadius: 14, background: C.red + "0c", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px" }}>
                   <b.Icon size={22} color={C.red} strokeWidth={1.3} />
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 4 }}>{b.t}</div>
-                <div style={{ fontSize: 12, color: C.su, lineHeight: 1.4 }}>{b.d}</div>
+                <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 4 }}>{b.t}</div>
+                <div style={{ fontSize: 15, color: C.su, lineHeight: 1.4 }}>{b.d}</div>
               </div>
             </Rv>
           ))}
@@ -1710,8 +1710,8 @@ export default function GuidanceApp() {
 
       <footer style={{ padding: "40px 20px 28px", background: C.li, textAlign: "center" }}>
         <Rv>
-          <div style={{ fontSize: 13, fontWeight: 600 }}>โรงเรียนเบญจมราชูทิศ ราชบุรี</div>
-          <div style={{ fontSize: 12, color: C.su, marginTop: 4 }}>หลักสูตรแนะแนว</div>
+          <div style={{ fontSize: 16, fontWeight: 600 }}>โรงเรียนเบญจมราชูทิศ ราชบุรี</div>
+          <div style={{ fontSize: 15, color: C.su, marginTop: 4 }}>หลักสูตรแนะแนว</div>
           <div style={{ width: 36, height: 3, borderRadius: 2, background: C.red, margin: "14px auto 0" }} />
         </Rv>
       </footer>
