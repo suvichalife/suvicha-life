@@ -17,6 +17,7 @@
   const D = window.GOL_DATA, C = PX.C, INS = D.INSURANCE, INV = D.INVEST;
   const $ = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
+  const I = (name, opt) => ICON.html(name, opt);   // pixel-art icons (no OS emoji)
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const r1000 = v => Math.round(v / 1000) * 1000;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -128,16 +129,16 @@
     if (s.ins.health) {
       const pay = Math.min(remaining, INS.health.limit);
       remaining -= pay; covered += pay;
-      lines.push({ label: '🛡 ประกันสุขภาพจ่ายแทน', amount: pay, kind: 'shield' });
+      lines.push({ label: 'ประกันสุขภาพจ่ายแทน', amount: pay, kind: 'shield' });
     }
     if (c.accident && s.ins.pa && remaining > 0) {
       const pay = Math.min(remaining, INS.pa.limit);
       remaining -= pay; covered += pay;
-      lines.push({ label: '🛡 ประกันอุบัติเหตุจ่ายค่ารักษา', amount: pay, kind: 'shield' });
+      lines.push({ label: 'ประกันอุบัติเหตุจ่ายค่ารักษา', amount: pay, kind: 'shield' });
     }
     if (c.ci && s.ins.ci) {
       bonus += INS.ci.payout;
-      lines.push({ label: '🛡 ประกันโรคร้ายแรงจ่ายเงินก้อน', amount: INS.ci.payout, kind: 'shield' });
+      lines.push({ label: 'ประกันโรคร้ายแรงจ่ายเงินก้อน', amount: INS.ci.payout, kind: 'shield' });
       s.ins.ci = false; s.insurable.ci = false;
     }
     if (remaining > 0) lines.push({ label: 'คุณต้องจ่ายเอง', amount: -remaining, kind: 'bad', strong: true });
@@ -451,8 +452,7 @@
   // SCREENS
   // ===========================================================================
   function show(id) {
-    $$('.screen').forEach(s => s.classList.toggle('active', s.id === id));
-    window.scrollTo(0, 0);
+    $$('.screen').forEach(s => { s.classList.toggle('active', s.id === id); s.scrollTop = 0; });
   }
 
   // ---- title ----
@@ -543,7 +543,7 @@
     const scroll = panel.scrollTop;
     panel.innerHTML = tab === 'overview' ? panelOverview() : tab === 'insurance' ? panelInsurance() : tab === 'invest' ? panelInvest() : panelStocks();
     panel.scrollTop = scroll;
-    $('#btnGo').textContent = S.stage === D.ROUNDS - 1 ? 'ใช้ชีวิตช่วงสุดท้าย ▶' : 'ใช้ชีวิตต่อ ▶';
+    $('#btnGo').innerHTML = (S.stage === D.ROUNDS - 1 ? 'ใช้ชีวิตช่วงสุดท้าย ' : 'ใช้ชีวิตต่อ ') + I('play');
   }
   function meter(v, kind) {
     const n = Math.round(v / 20);
@@ -585,7 +585,7 @@
           ${kv('คาดว่าเหลือ (ก่อนภาษี)', fmt(est), est < 0 ? 'neg' : '')}
           ${kv('มูลค่าทรัพย์สินสุทธิ', fmt(netWorth(s)))}
         </div>
-        <div class="cash-big"><span>💵 เงินสด</span><b>${fmt(s.cash)}</b></div>
+        <div class="cash-big"><span>${I('cash')} เงินสด</span><b>${fmt(s.cash)}</b></div>
       </div>
       <div class="card">
         ${sectionHead('ชีวิตและครอบครัว', 'h-pink')}
@@ -628,7 +628,7 @@
         <button class="btn btn-red sm" data-ins-buy="${k}" ${canBuy ? '' : 'disabled'}>ซื้อ 1 หน่วย ${fmt(prem)}${perYr(prem)}</button></div>`;
       if (k === 'annuity' && units) btns = btns.replace(`<button class="btn btn-grey sm" data-ins-sell="annuity">หยุดเพิ่ม</button>`, '');
       return `<div class="prod">
-        <div class="prod-title">${p.icon} ${p.name}</div>
+        <div class="prod-title">${I(p.icon)} ${p.name}</div>
         <p class="prod-desc">${p.desc}</p>
         <div class="prod-status">${status}</div>
         <div class="grid2">${kv('เบี้ย/หน่วย/ช่วง (อายุนี้)', fmt(prem) + ' ' + perYr(prem))}${extra}</div>
@@ -642,7 +642,7 @@
         : wasExpired ? '<span class="badge warn">หมดอายุแล้ว — ต่ออายุ</span>' : '<span class="badge">ยังไม่มี</span>';
     btns = `<div class="btn-row"><button class="btn btn-red sm" data-ins-buy="${k}" ${active || blocked ? 'disabled' : ''}>${active ? 'คุ้มครองแล้ว' : (wasExpired ? 'ต่ออายุ ' : 'ซื้อ ') + fmt(prem) + perYr(prem)}</button></div>`;
     return `<div class="prod ${active ? 'is-on' : ''}">
-      <div class="prod-title">${p.icon} ${p.name}</div>
+      <div class="prod-title">${I(p.icon)} ${p.name}</div>
       <p class="prod-desc">${p.desc}</p>
       <div class="prod-status">${status}</div>
       <div class="grid2">${kv('เบี้ยช่วงนี้ (อายุ ' + s.age + ')', fmt(prem) + ' ' + perYr(prem))}${kv(k === 'health' ? 'วงเงินค่ารักษา' : 'ผลประโยชน์', fmt(k === 'health' ? p.limit : p.payout))}</div>
@@ -665,7 +665,7 @@
     if (!prev) return '';
     const pct = Math.round((cur / prev - 1) * 100);
     if (!pct) return '<span class="chg">0%</span>';
-    return `<span class="chg ${pct > 0 ? 'up' : 'down'}">${pct > 0 ? '▲' : '▼'}${Math.abs(pct)}%</span>`;
+    return `<span class="chg ${pct > 0 ? 'up' : 'down'}">${I(pct > 0 ? 'up' : 'down', { px: 1 })} ${Math.abs(pct)}%</span>`;
   }
   function assetCard(k) {
     const s = S, p = INV[k], price = s.prices[k], units = s.inv[k];
@@ -854,10 +854,10 @@
         if (l.kind === 'note') return `<div class="bill-row note"><span>${esc(l.label)}</span></div>`;
         if (l.kind === 'pct') return `<div class="bill-row bad"><span>${esc(l.label)}</span><b>${l.amount}%</b></div>`;
         if (l.kind === 'info') return `<div class="bill-row info"><span>${esc(l.label)}</span><b>${fmt(l.amount)}</b></div>`;
-        return `<div class="bill-row ${l.kind} ${l.strong ? 'strong' : ''}"><span>${esc(l.label)}</span><b>${fmtSigned(l.amount)}</b></div>`;
+        return `<div class="bill-row ${l.kind} ${l.strong ? 'strong' : ''}"><span>${l.kind === 'shield' ? I('shield') + ' ' : ''}${esc(l.label)}</span><b>${fmtSigned(l.amount)}</b></div>`;
       }).join('') + '</div>';
     }
-    if (res.notes && res.notes.length) h += res.notes.map(n => `<p class="note-warn">⚠ ${esc(n)}</p>`).join('');
+    if (res.notes && res.notes.length) h += res.notes.map(n => `<p class="note-warn">${I('warn')} ${esc(n)}</p>`).join('');
     if (res.text) h += `<p class="res-text">${esc(res.text)}</p>`;
     return h;
   }
@@ -922,7 +922,7 @@
         head, headCls, portrait,
         body: intro + `<p class="dice-note">${esc(ev.diceNote(S))}</p>` + diceHTML() + '<div class="res"></div>',
         buttons: [{
-          label: '🎲 ทอยลูกเต๋า', cls: 'btn-purple',
+          label: I('die') + ' ทอยลูกเต๋า', cls: 'btn-purple',
           onClick: async api => {
             api.setButtons([{ label: 'กำลังทอย...', cls: 'btn-grey', disabled: true }]);
             const die = await animateDice(api.el.querySelector('.dice'));
@@ -973,8 +973,8 @@
   // ---- round summary ----
   async function showSummary(r) {
     Scene.setMode('LIGHT');
-    const rows = r.lines.map(l => `<div class="bill-row ${l.kind}"><span>${esc(l.label)}</span><b>${fmtSigned(l.amount)}</b></div>`).join('');
-    const notes = r.notes.map(n => `<p class="note-${n.kind}">${n.kind === 'good' ? '✓' : '⚠'} ${esc(n.t)}</p>`).join('');
+    const rows = r.lines.map(l => `<div class="bill-row ${l.kind}"><span>${l.kind === 'shield' ? I('shield') + ' ' : ''}${esc(l.label)}</span><b>${fmtSigned(l.amount)}</b></div>`).join('');
+    const notes = r.notes.map(n => `<p class="note-${n.kind}">${I(n.kind === 'good' ? 'check' : 'warn')} ${esc(n.t)}</p>`).join('');
     const body = `
       <h3 class="ev-title">สรุปช่วงอายุ ${ageLabel(r.fromAge)}</h3>
       <div class="bill">${rows}
@@ -1003,8 +1003,8 @@
       ok = await dialog({
         head: 'พร้อมหรือยัง', headCls: 'h-black',
         body: `<p class="center">คุณพร้อมออกไปใช้ชีวิตช่วงอายุ <b>${ageLabel(S.age)}</b> ที่ไม่อาจคาดเดาได้หรือยัง</p>
-          ${warns.length ? '<div class="warn-list">' + warns.map(w => `<p>⚠ ${w}</p>`).join('') + '</div>' : ''}`,
-        buttons: [{ label: 'กลับไปวางแผน', cls: 'btn-grey', value: false }, { label: 'ไปต่อ ▶', cls: 'btn-red', value: true }]
+          ${warns.length ? '<div class="warn-list">' + warns.map(w => `<p>${I('warn')} ${w}</p>`).join('') + '</div>' : ''}`,
+        buttons: [{ label: 'กลับไปวางแผน', cls: 'btn-grey', value: false }, { label: 'ไปต่อ ' + I('play'), cls: 'btn-red', value: true }]
       });
     } finally { asking = false; }
     if (!ok) return;
@@ -1073,8 +1073,8 @@
       big = legacy; bigLabel = 'เงินที่ครอบครัวได้รับ';
       extra = `<div class="bill">
         <div class="bill-row ${assets >= 0 ? 'good' : 'bad'}"><span>ทรัพย์สินสุทธิ (หักหนี้แล้ว)</span><b>${fmtSigned(assets)}</b></div>
-        <div class="bill-row ${lifePay ? 'shield' : 'bad'}"><span>🛡 เงินจากประกันชีวิต</span><b>${fmtSigned(lifePay)}</b></div>
-        ${paPay ? `<div class="bill-row shield"><span>🛡 เงินจากประกันอุบัติเหตุ</span><b>${fmtSigned(paPay)}</b></div>` : ''}
+        <div class="bill-row ${lifePay ? 'shield' : 'bad'}"><span>${I('shield')} เงินจากประกันชีวิต</span><b>${fmtSigned(lifePay)}</b></div>
+        ${paPay ? `<div class="bill-row shield"><span>${I('shield')} เงินจากประกันอุบัติเหตุ</span><b>${fmtSigned(paPay)}</b></div>` : ''}
         <div class="bill-row strong good"><span>รวมที่ส่งต่อ</span><b>${fmt(legacy)}</b></div></div>`;
     } else if (reason === 'bankrupt') {
       head = 'ล้มละลาย'; title = 'หนี้สินท่วมตัว'; sub = 'หนี้ดอกเบี้ยสูงพอกพูนจนไม่สามารถไปต่อได้ การมีเงินสำรองและประกันคือเกราะป้องกันไม่ให้ชีวิตสะดุด';
@@ -1083,7 +1083,7 @@
       const nw = netWorth(s, true);
       const [r, d] = rankFor(nw);
       head = 'เกษียณอายุ 65 ปี'; title = r; sub = d; big = nw; bigLabel = 'ทรัพย์สินสุทธิ ณ วันเกษียณ';
-      if (pension) extra = `<div class="bill"><div class="bill-row shield"><span>👴 รวมเงินบำนาญที่จะได้รับ</span><b>${fmt(pension)}</b></div></div>`;
+      if (pension) extra = `<div class="bill"><div class="bill-row shield"><span>${I('coin')} รวมเงินบำนาญที่จะได้รับ</span><b>${fmt(pension)}</b></div></div>`;
       try {
         const best = JSON.parse(localStorage.getItem('gol_best') || 'null');
         if (!best || nw > best.nw) localStorage.setItem('gol_best', JSON.stringify({ nw, persona: s.persona.name }));
@@ -1177,7 +1177,7 @@
     $('#restartSheet').classList.remove('in');
     await dialog({
       head: 'ก่อนเริ่มใหม่', headCls: 'h-red', cls: 'reality',
-      body: `<div class="reality-box"><div class="rewind">⏪</div>
+      body: `<div class="reality-box"><div class="rewind">${I('rewind', { px: 5 })}</div>
         <p class="reality-main">ชีวิตจริง<br>คุณย้อนกลับมาเริ่มใหม่ไม่ได้</p>
         <p class="reality-sub">ในเกมกดเริ่มใหม่ได้เสมอ แต่ในชีวิตจริง ทุกการตัดสินใจมีผลตลอดไป วางแผนวันนี้ เพื่อวันที่ไม่มีโอกาสแก้ตัว</p></div>`,
       buttons: [{ label: 'เข้าใจแล้ว', cls: 'btn-red' }]
@@ -1208,11 +1208,29 @@
   // ===========================================================================
   // BOOT
   // ===========================================================================
+  // Phone-only lock: no pinch / double-tap zoom, no rubber-band, no stray page scroll.
+  // (iOS Safari ignores user-scalable=no, so the gestures are blocked explicitly.)
+  function lockViewport() {
+    ['gesturestart', 'gesturechange', 'gestureend'].forEach(ev => document.addEventListener(ev, e => e.preventDefault(), { passive: false }));
+    document.addEventListener('touchmove', e => { if (e.touches.length > 1 || (e.scale && e.scale !== 1)) e.preventDefault(); }, { passive: false });
+    document.addEventListener('dblclick', e => e.preventDefault());
+    document.addEventListener('contextmenu', e => { if (!e.target.closest('input, textarea')) e.preventDefault(); });
+    // keep the page itself from scrolling: only .screen / #panel / .sheet-body may scroll
+    document.addEventListener('touchmove', e => {
+      if (e.touches.length > 1) return;
+      if (!e.target.closest('.screen, #panel, .sheet-body, .sheet')) e.preventDefault();
+    }, { passive: false });
+    try { if (screen.orientation && screen.orientation.lock) screen.orientation.lock('portrait').catch(() => {}); } catch (err) { /* not supported in Safari tabs */ }
+  }
+
   function boot() {
+    lockViewport();
+    $$('[data-icon]').forEach(el => { el.innerHTML = I(el.dataset.icon, { px: +el.dataset.px || 2 }); });
     Scene.init($('#sceneCanvas'));
     initTitle();
     $('#homeLink').href = CONFIG.HOME_URL;
     $('#btnHome').addEventListener('click', () => { SFX.click(); location.href = CONFIG.HOME_URL; });
+    $('#btnHomeTitle').href = CONFIG.HOME_URL;
     $('#btnRestart').addEventListener('click', restartFlow);
     $('#btnStart').addEventListener('click', () => { SFX.unlock(); SFX.click(); initSelect(); show('screen-select'); });
     $('#btnHow').addEventListener('click', () => { SFX.unlock(); SFX.click(); howTo(); });
@@ -1223,7 +1241,7 @@
     $('#panel').addEventListener('input', onPanelInput);
     $$('.tab').forEach(b => b.addEventListener('click', () => { if (busy) return; SFX.click(); tab = b.dataset.tab; $('#panel').scrollTop = 0; renderGame(); bindAgentFaces(); }));
     const mute = $('#muteBtn');
-    const setMuteIcon = () => { mute.textContent = SFX.isMuted() ? '🔇' : '🔊'; };
+    const setMuteIcon = () => { mute.innerHTML = I(SFX.isMuted() ? 'mute' : 'speaker'); };
     setMuteIcon();
     mute.addEventListener('click', () => { SFX.toggle(); setMuteIcon(); });
     // re-bind agent faces whenever panel re-renders

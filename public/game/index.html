@@ -2,7 +2,10 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
   <title>The Game of Life — เกมแห่งชีวิต | suvicha.life</title>
   <meta name="description" content="The Game of Life เกมจำลองการบริหารเงิน วางแผนความเสี่ยง และใช้ชีวิตสไตล์ Pixel Art จาก suvicha.life">
   <meta name="theme-color" content="#1a2024">
@@ -22,6 +25,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Pretendard (English / title lettering) — same file the main site uses -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 
   <!-- Root-absolute paths so the page works at both /game and /game/ -->
   <link rel="stylesheet" href="/game/css/style.css">
@@ -37,7 +42,7 @@
         <span>suvicha.<span style="color:var(--red);">life</span></span>
       </a>
       <div class="top-actions">
-        <button id="muteBtn" class="icon-btn" title="เปิด/ปิดเสียง" aria-label="Mute audio">🔊</button>
+        <button id="muteBtn" class="icon-btn" title="เปิด/ปิดเสียง" aria-label="Mute audio"></button>
       </div>
     </header>
 
@@ -58,8 +63,9 @@
       <div id="bestScore" class="best-score"></div>
 
       <div class="title-actions">
-        <button id="btnStart" class="btn btn-red">เริ่มเกมใหม่ ▶</button>
+        <button id="btnStart" class="btn btn-red">เริ่มเกมใหม่ <i data-icon="play"></i></button>
         <button id="btnHow" class="btn btn-grey sm">วิธีเล่น</button>
+        <a id="btnHomeTitle" href="/" class="btn btn-grey sm">กลับหน้าหลัก suvicha.life</a>
       </div>
     </main>
 
@@ -94,11 +100,11 @@
         </div>
         <div class="hud-meters">
           <div class="meter-group">
-            <span>❤️ สุขภาพ</span>
+            <span><i data-icon="heart"></i> สุขภาพ</span>
             <span id="hudHealth"></span>
           </div>
           <div class="meter-group">
-            <span>😊 ความสุข</span>
+            <span><i data-icon="smile"></i> ความสุข</span>
             <span id="hudHappy"></span>
           </div>
         </div>
@@ -134,7 +140,7 @@
 
       <!-- Bottom Advance Bar -->
       <div class="bottom-bar">
-        <button id="btnGo" class="btn btn-red">ใช้ชีวิตต่อ ▶</button>
+        <button id="btnGo" class="btn btn-red">ใช้ชีวิตต่อ <i data-icon="play"></i></button>
       </div>
     </main>
 
@@ -155,6 +161,13 @@
 
   </div>
 
+  <!-- Shown in landscape on phones: the game is portrait-only -->
+  <div id="rotateGuard" role="alert">
+    <i data-icon="rotate" data-px="5"></i>
+    <p>กรุณาหมุนจอเป็นแนวตั้ง</p>
+    <small>เกมนี้เล่นในแนวตั้งเท่านั้น</small>
+  </div>
+
   <!-- Toast Notification -->
   <div id="toast"></div>
 
@@ -162,6 +175,7 @@
   <div id="modalRoot"></div>
 
   <!-- Scripts -->
+  <script src="/game/js/icons.js"></script>
   <script src="/game/js/pixel.js"></script>
   <script src="/game/js/sound.js"></script>
   <script src="/game/js/data.js"></script>
