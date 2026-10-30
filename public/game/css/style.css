@@ -170,7 +170,8 @@ html[data-screen="screen-title"] { background: var(--soft-pink); }
 .brand {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
+  padding-left: 8px;
   text-decoration: none;
   color: var(--black);
   font-weight: 800;

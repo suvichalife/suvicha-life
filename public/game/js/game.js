@@ -716,7 +716,7 @@
       ${sectionHead('ตลาดหุ้น', 'h-orange')}
       <p class="fineprint">ราคาต่อหุ้น • ซื้อขายทีละหลายหุ้นได้ ใส่จำนวนแล้วกดซื้อหรือขาย</p>
       ${D.STOCKS.map(st => {
-        const h = s.stocks[st.id], val = h.qty * h.price, pl = h.cost ? Math.round((val / h.cost - 1) * 100) : 0, q = qty[st.id] || 10;
+        const h = s.stocks[st.id], val = h.qty * h.price, pl = h.cost ? Math.round((val / h.cost - 1) * 100) : 0, q = qty[st.id] || 100;
         return `<div class="prod">
           <div class="prod-title">ชื่อผลิตภัณฑ์: ${st.name}</div>
           <div class="grid2">
@@ -779,7 +779,7 @@
       }
     }
     else if (d.sbuy || d.ssell) {
-      const id = d.sbuy || d.ssell, h = S.stocks[id], n = Math.max(1, Math.floor(qty[id] || 10));
+      const id = d.sbuy || d.ssell, h = S.stocks[id], n = Math.max(1, Math.floor(qty[id] || 100));
       if (d.sbuy) { const cost = Math.round(h.price * n); if (spend(cost)) { h.qty += n; h.cost += cost; } }
       else {
         const m = Math.min(n, h.qty); if (!m) { toast('ไม่มีหุ้นให้ขาย'); return; }
