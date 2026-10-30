@@ -471,8 +471,6 @@
       const c = Math.floor(t * 2) % 2;
       PX.drawCoin(w / 2 - 3, 10 + c, t);
     });
-    let best = null; try { best = JSON.parse(localStorage.getItem('gol_best') || 'null'); } catch (e) { /* ignore */ }
-    $('#bestScore').textContent = best ? `สถิติสูงสุด: ${fmtShort(best.nw)} (${best.persona})` : '';
   }
 
   // ---- character select ----

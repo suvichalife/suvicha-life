@@ -28,8 +28,8 @@
   <!-- Pretendard (English / title lettering) — same file the main site uses -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 
-  <!-- Root-absolute paths so the page works at both /game and /game/ -->
-  <link rel="stylesheet" href="/game/css/style.css">
+  <!-- Root-absolute paths so the page works at both /game and /game/. ?v= busts the browser cache: bump it on every game update (GitHub Pages caches files for 10 min) -->
+  <link rel="stylesheet" href="/game/css/style.css?v=20261030b">
 </head>
 <body>
 
@@ -62,8 +62,6 @@
       <div class="title-canvas-box">
         <canvas id="titleCanvas" width="180" height="96"></canvas>
       </div>
-
-      <div id="bestScore" class="best-score"></div>
 
       <div class="title-actions">
         <button id="btnStart" class="btn btn-red">เริ่มเกมใหม่ <i data-icon="play"></i></button>
@@ -178,10 +176,10 @@
   <div id="modalRoot"></div>
 
   <!-- Scripts -->
-  <script src="/game/js/icons.js"></script>
-  <script src="/game/js/pixel.js"></script>
-  <script src="/game/js/sound.js"></script>
-  <script src="/game/js/data.js"></script>
-  <script src="/game/js/game.js"></script>
+  <script src="/game/js/icons.js?v=20261030b"></script>
+  <script src="/game/js/pixel.js?v=20261030b"></script>
+  <script src="/game/js/sound.js?v=20261030b"></script>
+  <script src="/game/js/data.js?v=20261030b"></script>
+  <script src="/game/js/game.js?v=20261030b"></script>
 </body>
 </html>
