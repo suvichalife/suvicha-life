@@ -30,6 +30,7 @@
 /* The game is a fixed, app-like shell: the page itself never scrolls, zooms or
    rubber-bands. Only .screen, #panel and .sheet-body scroll inside it. */
 html {
+  background: var(--white);
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
@@ -43,7 +44,7 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: #1a2024;
+  background: transparent;
   color: var(--black);
   font-family: var(--font-pixel);
   display: flex;
@@ -58,7 +59,6 @@ body {
 
 #app-container {
   width: 100%;
-  max-width: 440px;
   height: 100%;
   background: var(--white);
   position: relative;
@@ -66,6 +66,15 @@ body {
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+/* the page colour also fills the strips under the status bar / toolbar */
+html[data-screen="screen-title"] { background: var(--soft-pink); }
+
+/* desktop only: a 440px phone-shaped column on a dark backdrop */
+@media (min-width: 600px) {
+  html, html[data-screen="screen-title"] { background: #1a2024; }
+  #app-container { max-width: 440px; box-shadow: 0 0 40px rgba(0,0,0,0.5); }
 }
 
 /* ==========================================================================
@@ -168,6 +177,14 @@ body {
   font-size: 16px;
 }
 
+#brandText {
+  height: 22px;
+  width: auto;
+  image-rendering: pixelated;
+  display: block;
+}
+#brandText[hidden], #homeBtn[hidden] { display: none; }
+
 .brand-dot {
   width: 8px;
   height: 8px;
@@ -226,9 +243,10 @@ a.btn { text-decoration: none; color: var(--black); }
   padding: 20px 16px;
   text-align: center;
 }
-/* auto margins centre the block but never push it off-screen on short phones */
-#screen-title .title-header { margin-top: auto; }
-#screen-title .title-actions { margin-bottom: auto; }
+/* flexible spacers: the block sits slightly above centre and never gets pushed
+   off-screen on short phones */
+#screen-title::before { content: ''; flex: 0.45 1 0; }
+#screen-title::after { content: ''; flex: 1 1 0; }
 
 .title-header h1 {
   font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -835,9 +853,9 @@ a.btn { text-decoration: none; color: var(--black); }
   inset: 0;
   background: rgba(0,0,0,0.65);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 16px;
+  padding: 0 8px calc(10px + env(safe-area-inset-bottom));
   pointer-events: auto;
   opacity: 0;
   transition: opacity 0.2s ease-out;
@@ -848,8 +866,9 @@ a.btn { text-decoration: none; color: var(--black); }
 
 .sheet {
   width: 100%;
-  max-width: 400px;
-  max-height: 100%;
+  max-width: 440px;
+  /* stay below the animated scene (HUD + scene take roughly the top 380px) */
+  max-height: max(240px, min(60%, calc(100% - 380px)));
   overflow: hidden;
   background: #fff;
   border: 3px solid var(--black);
@@ -873,6 +892,9 @@ a.btn { text-decoration: none; color: var(--black); }
   text-align: center;
 }
 
+/* the scene behind the dialog already animates the same characters, and the
+   dialog must leave it visible, so in-game the duplicate portrait strip is hidden */
+body:has(#screen-game.active) .ev-portrait { display: none; }
 .ev-portrait {
   width: 100%;
   height: 96px;

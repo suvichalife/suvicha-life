@@ -453,6 +453,8 @@
   // ===========================================================================
   function show(id) {
     $$('.screen').forEach(s => { s.classList.toggle('active', s.id === id); s.scrollTop = 0; });
+    document.documentElement.dataset.screen = id;
+    $('#homeBtn').hidden = id === 'screen-title';
   }
 
   // ---- title ----
@@ -1187,6 +1189,44 @@
     S = null; initSelect(); show('screen-select');
   }
 
+  // ---- leave the game (house button) ----
+  async function exitGame() {
+    if (busy) { toast('รอสักครู่ แล้วลองใหม่อีกครั้ง'); return; }
+    SFX.click();
+    const ok = await dialog({
+      head: 'ออกจากเกม', headCls: 'h-black',
+      body: '<p class="ev-title">ต้องการออกจากเกมหรือไม่?</p><p class="ev-text">ความคืบหน้าของเกมนี้จะหายไป และกลับไปหน้าแรกของเกม</p>',
+      buttons: [{ label: 'ไม่', cls: 'btn-grey', value: false }, { label: 'ใช่', cls: 'btn-red', value: true }]
+    });
+    if (!ok) return;
+    $('#restartSheet').classList.remove('in');
+    if (Scene._main) { Scene.init(Scene._main); Scene._main = null; }
+    Scene.moodOverride = null; Scene.moodT = 0; Scene.particles = [];
+    S = null; show('screen-title');
+  }
+
+  // ---- brand text: Pretendard, redrawn as hard-edged pixels ----
+  function pixelBrand() {
+    const cv = $('#brandText'), fallback = $('#brandFallback');
+    if (!cv || !document.fonts || !document.fonts.load) return;
+    const font = '800 11px "Pretendard Variable", Pretendard, sans-serif';
+    const parts = [['suvicha.', '#293239'], ['life', '#d21245']];
+    document.fonts.load(font).then(() => {
+      if (!document.fonts.check(font)) return;
+      const m = cv.getContext('2d'); m.font = font;
+      const widths = parts.map(p => Math.ceil(m.measureText(p[0]).width));
+      cv.width = widths[0] + widths[1] + 2; cv.height = 14;
+      const c = cv.getContext('2d', { willReadFrequently: true });
+      c.font = font; c.textBaseline = 'alphabetic';
+      let x = 1; parts.forEach((p, i) => { c.fillStyle = p[1]; c.fillText(p[0], x, 11); x += widths[i]; });
+      const img = c.getImageData(0, 0, cv.width, cv.height), d = img.data;
+      for (let i = 3; i < d.length; i += 4) d[i] = d[i] > 110 ? 255 : 0;   // hard pixel edges
+      c.putImageData(img, 0, 0);
+      cv.style.height = (cv.height * 2) + 'px';   // each pixel = 2 CSS px
+      cv.hidden = false; fallback.hidden = true;
+    }).catch(() => { /* keep the plain text */ });
+  }
+
   // ---- how to play ----
   function howTo() {
     dialog({
@@ -1225,6 +1265,16 @@
 
   function boot() {
     lockViewport();
+    pixelBrand();
+    $('#homeBtn').innerHTML = I('house');
+    $('#homeBtn').addEventListener('click', exitGame);
+    if (/[?&]debug=1/.test(location.search)) {   // on-device layout diagnostics
+      const d = document.createElement('pre');
+      d.style.cssText = 'position:fixed;left:0;bottom:0;z-index:9999;background:#000;color:#0f0;font:10px monospace;padding:4px;pointer-events:none;max-width:100%;white-space:pre-wrap';
+      document.body.appendChild(d);
+      const upd = () => { const v = window.visualViewport || {}; d.textContent = 'inner ' + innerWidth + 'x' + innerHeight + ' vv ' + Math.round(v.width) + 'x' + Math.round(v.height) + ' scale ' + (v.scale || 1).toFixed(3) + ' scrollW ' + document.documentElement.scrollWidth + ' app ' + $('#app-container').offsetWidth; };
+      upd(); setInterval(upd, 500);
+    }
     $$('[data-icon]').forEach(el => { el.innerHTML = I(el.dataset.icon, { px: +el.dataset.px || 2 }); });
     Scene.init($('#sceneCanvas'));
     initTitle();

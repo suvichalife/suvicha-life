@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <title>The Game of Life — เกมแห่งชีวิต | suvicha.life</title>
   <meta name="description" content="The Game of Life เกมจำลองการบริหารเงิน วางแผนความเสี่ยง และใช้ชีวิตสไตล์ Pixel Art จาก suvicha.life">
-  <meta name="theme-color" content="#1a2024">
+  <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="https://suvicha.life/game/">
 
   <!-- Link previews (LINE / Facebook / X) -->
@@ -37,11 +37,14 @@
 
     <!-- Top Navigation Bar -->
     <header class="top-bar">
-      <a href="/" id="homeLink" class="brand">
+      <a href="/" id="homeLink" class="brand" aria-label="suvicha.life">
         <span class="brand-dot"></span>
-        <span>suvicha.<span style="color:var(--red);">life</span></span>
+        <!-- redrawn as pixel text by game.js (Pretendard); this text shows until the font is ready -->
+        <span id="brandFallback">suvicha.<span style="color:var(--red);">life</span></span>
+        <canvas id="brandText" hidden></canvas>
       </a>
       <div class="top-actions">
+        <button id="homeBtn" class="icon-btn" title="ออกจากเกม" aria-label="ออกจากเกม" hidden></button>
         <button id="muteBtn" class="icon-btn" title="เปิด/ปิดเสียง" aria-label="Mute audio"></button>
       </div>
     </header>
@@ -65,7 +68,7 @@
       <div class="title-actions">
         <button id="btnStart" class="btn btn-red">เริ่มเกมใหม่ <i data-icon="play"></i></button>
         <button id="btnHow" class="btn btn-grey sm">วิธีเล่น</button>
-        <a id="btnHomeTitle" href="/" class="btn btn-grey sm">กลับหน้าหลัก suvicha.life</a>
+        <a id="btnHomeTitle" href="/" class="btn btn-grey sm">กลับหน้าหลัก</a>
       </div>
     </main>
 

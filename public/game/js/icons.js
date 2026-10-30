@@ -158,6 +158,18 @@
     rewind: triL([1, 2, 3, 4, 3, 2, 1]).map(r => r + '.' + r),
     up: up,
     down: up.slice().reverse(),
+    house: [
+      '.....k.....',
+      '....krk....',
+      '...krrrk...',
+      '..krrrrrk..',
+      '.krrrrrrrk.',
+      'kkkkkkkkkkk',
+      '.kwwwwwwwk.',
+      '.kwwkkkwwk.',
+      '.kwwkwkwwk.',
+      '.kkkkkkkkk.'
+    ],
     rotate: [
       '..kkkkkk..',
       '.k......k.',
