@@ -178,7 +178,6 @@ html[data-screen="screen-title"] { background: var(--soft-pink); }
 }
 
 #brandText {
-  height: 22px;
   width: auto;
   image-rendering: pixelated;
   display: block;

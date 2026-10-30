@@ -1209,20 +1209,20 @@
   function pixelBrand() {
     const cv = $('#brandText'), fallback = $('#brandFallback');
     if (!cv || !document.fonts || !document.fonts.load) return;
-    const font = '800 11px "Pretendard Variable", Pretendard, sans-serif';
+    const font = '800 14px "Pretendard Variable", Pretendard, sans-serif';
     const parts = [['suvicha.', '#293239'], ['life', '#d21245']];
     document.fonts.load(font).then(() => {
       if (!document.fonts.check(font)) return;
       const m = cv.getContext('2d'); m.font = font;
       const widths = parts.map(p => Math.ceil(m.measureText(p[0]).width));
-      cv.width = widths[0] + widths[1] + 2; cv.height = 14;
+      cv.width = widths[0] + widths[1] + 2; cv.height = 18;
       const c = cv.getContext('2d', { willReadFrequently: true });
       c.font = font; c.textBaseline = 'alphabetic';
-      let x = 1; parts.forEach((p, i) => { c.fillStyle = p[1]; c.fillText(p[0], x, 11); x += widths[i]; });
+      let x = 1; parts.forEach((p, i) => { c.fillStyle = p[1]; c.fillText(p[0], x, 14); x += widths[i]; });
       const img = c.getImageData(0, 0, cv.width, cv.height), d = img.data;
       for (let i = 3; i < d.length; i += 4) d[i] = d[i] > 110 ? 255 : 0;   // hard pixel edges
       c.putImageData(img, 0, 0);
-      cv.style.height = (cv.height * 2) + 'px';   // each pixel = 2 CSS px
+      cv.style.width = (cv.width * 1.5) + 'px'; cv.style.height = (cv.height * 1.5) + 'px';   // finer than 2px blocks, still clearly pixels
       cv.hidden = false; fallback.hidden = true;
     }).catch(() => { /* keep the plain text */ });
   }
