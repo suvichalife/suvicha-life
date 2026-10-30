@@ -47,3 +47,6 @@ next-env.d.ts
 # raw source photos (already copied into public/images/)
 /floating portrait.png
 /standing portrait.jpg
+
+# original source folder of the game; the deployed copy lives in public/game/
+/The Game of Life/

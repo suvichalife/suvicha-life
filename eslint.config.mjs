@@ -13,6 +13,9 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     ".claude/**",
+    // Plain browser JS/CSS/HTML served as-is (not part of the Next bundle)
+    "public/game/**",
+    "The Game of Life/**",
   ]),
 ]);
 

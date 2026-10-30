@@ -49,25 +49,31 @@ export default function Nav() {
           </span>
         </a>
 
-        <div className="flex items-center gap-5 sm:gap-6">
-          <div ref={menuRef} className="relative">
+        {/* `relative` lives on this wrapper (not the button) so the dropdown is
+            right-aligned to the nav edge and can't spill off narrow phones */}
+        <div className="relative flex items-center gap-5 sm:gap-6">
+          <div ref={menuRef}>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
+              aria-controls="nav-menu"
               className="font-thai text-[14px] font-medium text-ink transition-opacity duration-300 hover:opacity-60"
             >
-              แนะแนว
+              เกมแห่งชีวิต
             </button>
 
             <div
+              id="nav-menu"
               className="absolute right-0 top-full mt-4"
               style={{
                 opacity: open ? 1 : 0,
                 transform: open ? "translateY(0) scale(1)" : "translateY(-10px) scale(0.97)",
                 pointerEvents: open ? "auto" : "none",
+                // hidden (after the fade-out) so the closed menu's links can't be tabbed into
+                visibility: open ? "visible" : "hidden",
                 transformOrigin: "top right",
-                transition: "opacity .5s var(--ease-reveal), transform .5s var(--ease-reveal)",
+                transition: `opacity .5s var(--ease-reveal), transform .5s var(--ease-reveal), visibility 0s linear ${open ? "0s" : ".5s"}`,
               }}
             >
               <div
@@ -83,10 +89,19 @@ export default function Nav() {
                 <div className="px-5 pt-4">
                   <span className="font-thai text-[11px] font-medium tracking-wide text-sage">เลือกดู</span>
                 </div>
+                {/* plain <a>: /game/ is a static page in public/, not a Next route */}
+                <a
+                  href="/game/"
+                  onClick={() => setOpen(false)}
+                  className="font-body block px-5 pb-3 pt-1 text-[23px] font-bold leading-snug text-ink transition-opacity duration-300 hover:opacity-50"
+                >
+                  The Game of Life
+                </a>
+                <div className="mx-5 border-t" style={{ borderColor: "var(--gray)" }} />
                 <Link
                   href="/guidance"
                   onClick={() => setOpen(false)}
-                  className="font-thai block px-5 pb-5 pt-1 text-[23px] font-bold leading-snug text-ink transition-opacity duration-300 hover:opacity-50"
+                  className="font-thai block px-5 pb-5 pt-3 text-[23px] font-bold leading-snug text-ink transition-opacity duration-300 hover:opacity-50"
                 >
                   กิจกรรมแนะแนว
                 </Link>
