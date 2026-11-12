@@ -101,10 +101,19 @@ export default function Nav() {
                 <Link
                   href="/guidance"
                   onClick={() => setOpen(false)}
-                  className="font-thai block px-5 pb-5 pt-3 text-[23px] font-bold leading-snug text-ink transition-opacity duration-300 hover:opacity-50"
+                  className="font-thai block px-5 pb-3 pt-3 text-[23px] font-bold leading-snug text-ink transition-opacity duration-300 hover:opacity-50"
                 >
                   กิจกรรมแนะแนว
                 </Link>
+                <div className="mx-5 border-t" style={{ borderColor: "var(--gray)" }} />
+                {/* plain <a>: /x/ is a static page in public/ (passcode gate) */}
+                <a
+                  href="/x/"
+                  onClick={() => setOpen(false)}
+                  className="font-body block px-5 pb-5 pt-3 text-[23px] font-bold leading-snug text-ink transition-opacity duration-300 hover:opacity-50"
+                >
+                  X
+                </a>
               </div>
             </div>
           </div>

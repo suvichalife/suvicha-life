@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#21201e">
+<meta name="robots" content="noindex, nofollow">
+<title>X · suvicha.life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root { --black:#21201e; --key:#2f2d2a; --key-hi:#3b3834; --white:#fff; --grey:#9a9d9e; --red:#ed0100; --red-t:#ff6b64;
+  --font:'Pretendard','Kanit','Noto Sans Thai',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif; }
+* { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+
+/* locked page: nothing here may scroll, bounce or zoom */
+html { height:100%; overflow:hidden; overscroll-behavior:none; touch-action:none; -webkit-text-size-adjust:100%; background:var(--black); }
+body { position:fixed; inset:0; width:100%; height:100%; overflow:hidden; overscroll-behavior:none; touch-action:none;
+  background:var(--black); color:var(--white); font-family:var(--font);
+  -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; }
+
+#gate { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:clamp(8px,2.2dvh,18px);
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+
+#back { position:absolute; top:calc(14px + env(safe-area-inset-top)); left:calc(18px + env(safe-area-inset-left));
+  min-height:44px; display:flex; align-items:center; gap:8px; padding:0 14px; border-radius:22px;
+  color:var(--grey); text-decoration:none; font-size:15px; font-weight:500; touch-action:manipulation; }
+#back:active { color:var(--white); }
+
+h1 { font-size:clamp(20px,4dvh,28px); font-weight:700; letter-spacing:.02em; }
+.sub { font-size:14px; color:var(--grey); margin-top:-6px; }
+
+#dots { display:flex; gap:20px; padding:10px 0; }
+.dot { width:16px; height:16px; border-radius:50%; border:2px solid var(--grey); transition:background .12s, border-color .12s, transform .12s; }
+.dot.on { background:var(--white); border-color:var(--white); transform:scale(1.1); }
+#dots.shake { animation:shake .42s cubic-bezier(.36,.07,.19,.97); }
+#dots.shake .dot { border-color:var(--red-t); }
+@keyframes shake { 10%,90%{transform:translateX(-3px)} 20%,80%{transform:translateX(6px)} 30%,50%,70%{transform:translateX(-10px)} 40%,60%{transform:translateX(10px)} }
+
+#msg { min-height:22px; font-size:15px; font-weight:600; color:var(--red-t); opacity:0; transition:opacity .15s; }
+#msg.show { opacity:1; }
+
+#pad { display:grid; grid-template-columns:repeat(3, clamp(72px,16dvh,104px)); gap:clamp(8px,1.8dvh,14px); }
+#pad button { height:clamp(56px,11dvh,76px); border:0; border-radius:14px; background:var(--key); color:var(--white);
+  font:600 clamp(22px,4dvh,30px)/1 var(--font); touch-action:manipulation; cursor:pointer; transition:background .08s, transform .08s; }
+#pad button:active, #pad button.press { background:var(--key-hi); transform:scale(.96); }
+#pad button.fn { font-size:clamp(15px,2.6dvh,18px); font-weight:500; color:var(--grey); background:transparent; }
+#pad button.fn:active { color:var(--white); background:var(--key); }
+
+/* portrait: ask for landscape, covering everything (browsers cannot lock orientation from code) */
+#rotate { display:none; position:fixed; inset:0; z-index:50; background:var(--black); color:var(--white);
+  place-items:center; text-align:center; font-size:22px; padding:30px; }
+#rotate svg { width:72px; height:72px; margin:0 auto 18px; display:block; }
+#rotate small { display:block; margin-top:8px; font-size:14px; color:var(--grey); }
+@media (orientation:portrait) and (max-width:1100px) { #rotate { display:grid; } }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <a id="back" href="/" aria-label="กลับหน้าหลัก">&#8592; กลับหน้าหลัก</a>
+  <h1>X</h1>
+  <p class="sub">กรอกรหัส 4 หลัก</p>
+  <div id="dots" aria-live="polite" aria-label="รหัส 0 จาก 4 หลัก"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+  <p id="msg" role="alert">รหัสไม่ถูกต้อง</p>
+  <!-- custom keypad on purpose: no <input>, so the iPad on-screen keyboard never opens -->
+  <div id="pad">
+    <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button>
+    <button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button>
+    <button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button>
+    <button type="button" class="fn" data-k="clear">ล้าง</button><button type="button" data-k="0">0</button><button type="button" class="fn" data-k="del" aria-label="ลบ">ลบ</button>
+  </div>
+</div>
+
+<div id="rotate" role="alert">
+  <div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M12 4a8 8 0 0 1 6 3M18 4v3h-3"/></svg>
+    หมุน iPad เป็นแนวนอน
+    <small>หน้านี้ใช้ได้เฉพาะแนวนอน</small>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var CODE = '2520', DEMO = '/x/dock-to-stock-interactive.html';
+  var value = '', locked = false;
+  var dotsEl = document.getElementById('dots'), dots = dotsEl.querySelectorAll('.dot'), msg = document.getElementById('msg');
+
+  function render() {
+    for (var i = 0; i < 4; i++) dots[i].classList.toggle('on', i < value.length);
+    dotsEl.setAttribute('aria-label', 'รหัส ' + value.length + ' จาก 4 หลัก');
+  }
+  function fail() {
+    locked = true; msg.classList.add('show');
+    dotsEl.classList.remove('shake'); void dotsEl.offsetWidth; dotsEl.classList.add('shake');
+    if (navigator.vibrate) { try { navigator.vibrate(120); } catch (e) {} }
+    setTimeout(function () { value = ''; render(); dotsEl.classList.remove('shake'); locked = false; }, 450);
+  }
+  function press(k) {
+    if (locked) return;
+    if (k === 'clear') { value = ''; msg.classList.remove('show'); render(); return; }
+    if (k === 'del') { value = value.slice(0, -1); render(); return; }
+    if (value.length >= 4) return;
+    msg.classList.remove('show');
+    value += k; render();
+    if (value.length === 4) {
+      locked = true;
+      setTimeout(function () {
+        if (value === CODE) location.href = DEMO;     // new page: Safari's back button returns here
+        else { locked = false; fail(); }
+      }, 160);
+    }
+  }
+  document.getElementById('pad').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (b) press(b.getAttribute('data-k'));
+  });
+  document.addEventListener('keydown', function (e) {   // hardware keyboard (desktop / iPad keyboard)
+    if (/^[0-9]$/.test(e.key)) press(e.key);
+    else if (e.key === 'Backspace') press('del');
+    else if (e.key === 'Escape') press('clear');
+  });
+
+  // no page scroll / bounce / pinch-zoom
+  ['gesturestart', 'gesturechange', 'gestureend'].forEach(function (n) {
+    document.addEventListener(n, function (e) { e.preventDefault(); }, { passive: false });
+  });
+  document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+  document.addEventListener('dblclick', function (e) { e.preventDefault(); });
+  document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  // coming back via Safari's back button: start from an empty code again
+  window.addEventListener('pageshow', function () { value = ''; locked = false; msg.classList.remove('show'); render(); });
+})();
+</script>
+</body>
+</html>
