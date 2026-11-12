@@ -148,6 +148,11 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 #info .ir p{font-size:14px;line-height:1.55;color:var(--white)}
 #info .ir.now{padding:8px 10px;border-radius:12px;background:rgba(220,224,225,.08)}
 #hud{cursor:pointer}
+#hud.gone{display:none}
+#hudMin{position:absolute;right:8px;bottom:6px;height:26px;padding:0 10px;border-radius:13px;background:rgba(220,224,225,.14);color:var(--lg);font-size:11px;font-weight:600;border:1px solid rgba(220,224,225,.22)}
+#hudCap{position:absolute;right:calc(var(--pw,0px) + 16px);bottom:16px;z-index:4;height:46px;padding:0 18px;border-radius:23px;background:rgba(33,32,30,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(220,224,225,.28);font-size:15px;font-weight:600;display:none;align-items:center;gap:8px}
+#hudCap.on{display:inline-flex}
+#hudCap .dot{width:8px;height:8px;border-radius:50%;background:var(--red)}
 #toast{position:absolute;left:calc((100% - var(--pw,0px))/2);top:16px;transform:translate(-50%,-10px);z-index:5;padding:10px 18px;border-radius:99px;background:var(--lg);color:var(--black);font-size:15px;font-weight:600;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;max-width:90%;text-align:center}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 
@@ -331,7 +336,9 @@ select,input[type=number]{width:100%;min-height:2.9em;border-radius:.75em;border
           <div class="pct" id="hudPct">0%</div>
         </div>
         <div><div class="n" id="hudNum">0</div><div class="l" id="hudLbl"></div><div class="l2" id="hudWhy"></div><span class="tag">ตัวอย่างข้อมูล</span></div>
+        <button id="hudMin" type="button" aria-label="ย่อตัวนับสต็อก">ย่อ</button>
       </div>
+      <button id="hudCap" type="button" aria-label="ขยายตัวนับสต็อก"><span class="dot"></span>ตัวนับสต็อก <b id="hudCapPct">0%</b></button>
     </section>
     <aside id="panel">
       <div id="phone">
@@ -910,11 +917,11 @@ function infoFor(){
     case 'server': return {icon:'◎',color:BLUE,title:'ระบบ OCR + SAP',step:'1 และ 6–8',
       what:'ศูนย์กลางข้อมูลของคลัง OCR อ่านเอกสารโรงงานแล้วเทียบกับใบสั่งซื้อ (PO) ใน SAP',
       who:'ระบบทำงานอัตโนมัติ ฝ่ายข้อมูลดูแลเฉพาะข้อยกเว้น (ของไม่ตรง PO) และจัดกลุ่ม ABC รายเดือน',
-      how:'ส่งรายการรถที่จะมาไปที่ handheld แล้วรับข้อมูลกลับทันทีที่ Checker สแกนและโฟล์คลิฟต์ยิงช่อง ต้องยืนยันกับ IT ว่าเชื่อมผ่าน API ได้',
+      how:'ส่งรายการรถที่จะมาไปที่ handheld แล้วรับข้อมูลกลับทันทีที่ Inspector สแกนและโฟล์คลิฟต์ยิงช่อง ต้องยืนยันกับ IT ว่าเชื่อมผ่าน API ได้',
       now:'ล็อตนี้: PO '+fmt(S.po)+' กล่อง · '+v.name};
     case 'dock': {const n=(SEL.idx||0)+1,use=n===S.dockIdx+1&&S.step>=1&&S.step<=4; return {icon:'⇩',color:PNK,title:'ประตู Dock '+n,step:'2',
       what:'ช่องจอดรถโรงงานที่ถอยเข้ามาลงสินค้า',
-      who:'คนขับโรงงานถอยรถเข้า Checker สแกน QR ที่ประตู ส่วนผู้ลงสินค้ายังไม่ยืนยันกับหน้างาน',
+      who:'คนขับโรงงานถอยรถเข้า Inspector สแกน QR ที่ประตู ส่วนผู้ลงสินค้ายังไม่ยืนยันกับหน้างาน',
       how:'สแกน QR ที่ประตูเพื่อผูกรถคันนั้นกับ PO ในระบบ ไม่ต้องเขียนหรือคีย์',
       now:use?'ใช้งานอยู่: '+v.name:'ว่างหรือยังไม่ใช้ในล็อตนี้'};}
     case 'truck': return {icon:'▭',color:GRY,title:'รถโรงงาน',step:'2–4',
@@ -925,12 +932,12 @@ function infoFor(){
     case 'pallet': {const i=SEL.idx||0; const st=S.step<3?'ยังอยู่บนรถ':S.step===3?(i<S.scanned?'สแกนนับแล้ว':'รอสแกน'):S.step===4?'รอผลสุ่มตรวจ':S.step===5?(S.decision&&S.decision.accept?'ผ่านการสุ่มตรวจ':'ไม่ผ่านการสุ่มตรวจ'):S.step===6?(i<S.T?'ได้ช่องเก็บแล้ว':'ไม่ถูกรับเข้า'):'ขั้นจัดเก็บ';
       return {icon:'▣',color:PNK,title:'พาเลทที่ '+(i+1)+'/'+S.pallets,step:'3–7',
       what:'พาเลทของล็อตนี้ ประมาณ '+S.bpp+' กล่อง สีบอกสถานะ: ชมพู = ยังไม่ตรวจ ขาว = สแกนแล้ว เขียว = ผ่านหรือจัดเก็บ แดง = ไม่ผ่าน',
-      who:'Checker สแกนนับและสุ่มตรวจ โฟล์คลิฟต์ขนไปเก็บ',
+      who:'Inspector สแกนนับและสุ่มตรวจ โฟล์คลิฟต์ขนไปเก็บ',
       how:'ตรวจรับ → สุ่มตรวจ → ออกป้ายทั้งล็อต → สแกนป้ายและช่อง → วางเข้าชั้น',
       now:st};}
     case 'stage': return {icon:'▣',color:PNK,title:'จุดตรวจรับ',step:'3–5',
       what:'พื้นที่วางพาเลทหลังลงจากรถ รอนับและสุ่มตรวจ',
-      who:'Checker',
+      who:'Inspector',
       how:'ยิงบาร์โค้ดทีละพาเลท ระบบรวมจำนวนให้ แล้วสุ่มเปิดกล่องตามแผน กระจายให้ครบทุกพาเลท',
       now:S.step>=3?'ล็อตนี้ '+fmt(S.counted||S.po)+' กล่อง · '+S.pallets+' พาเลท':'ยังไม่มีล็อต'};
     case 'zone': {const z=SEL.zone||'A'; return {icon:z,color:z==='A'?RED:z==='B'?BLUE:GRY,title:'โซน '+z+' · '+ZONE_NOTE[z],step:'6',
@@ -950,7 +957,7 @@ function infoFor(){
       now:S.store.length?'ระยะหยิบเฉลี่ยของช่องที่เลือก '+S.avgPick.toFixed(0)+' ม.':'ยังไม่มีล็อตที่จัดช่อง'};
     case 'printer': return {icon:'▤',color:BLUE,title:'ระบบออกป้าย',step:'7',
       what:'จุดที่ระบบออกป้ายพาเลทให้ทั้งล็อต วางใกล้ระบบ เป็นข้อเสนอ ถ้าตอนนี้ยังไม่มีต้องจัดหา และต้องยืนยันตำแหน่งกับหน้างาน',
-      who:'ระบบออกป้ายให้จากข้อมูลที่ลงรับแล้ว ฝ่ายข้อมูลดูแล Checker สั่งออกป้ายจาก Handheld แล้วนำป้ายไปแปะ',
+      who:'ระบบออกป้ายให้จากข้อมูลที่ลงรับแล้ว ฝ่ายข้อมูลดูแล Inspector สั่งออกป้ายจาก Handheld แล้วนำป้ายไปแปะ',
       how:'ออกป้ายครั้งเดียวทั้งล็อต แล้วแปะทีละพาเลท ป้ายมีรหัสสินค้า จำนวน lot โรงงาน QR และแถบสีโซน ช่องเก็บไม่อยู่บนป้าย',
       now:S.step===7?(S.printed?'ออกป้ายแล้ว '+S.T+' ใบ':'รอออกป้าย '+S.T+' ใบ'):'ยังไม่ถึงขั้นออกป้าย'};
     case 'fork': return {icon:'⇨',color:RED,title:'โฟล์คลิฟต์',step:'7',
@@ -963,7 +970,7 @@ function infoFor(){
       who:'ระบบคำนวณ โฟล์คลิฟต์ขับตาม',
       how:'ลงมาที่ทางขวางหน้าคลัง วิ่งตามทางเดินของช่อง แล้วเลี้ยวเข้าช่อง',
       now:S.store[S.trip]?'ระยะ '+S.store[S.trip].put.toFixed(0)+' ม.':''};
-    case 'hud': {const sk2=skuById(S.sku),mx=Math.max(sk2.max,S.stockAfter,1),val=S.step===8?shown:S.stockBefore; return {icon:'%',color:RED,title:'ตัวนับสต็อก (วงโดนัท)',step:'ทุกขั้น',
+    case 'hud': {const sk2=skuById(S.sku),mx=Math.max(sk2.max,S.stockAfter,1),val=S.step===8?shown:S.stockBefore; return {icon:'%',color:RED,title:'ตัวนับสต็อก',step:'ทุกขั้น',
       what:'ตัวเลขใหญ่คือสต็อกปัจจุบันของสินค้านี้ (กล่อง) วงแหวนและเปอร์เซ็นต์คือสต็อก ÷ ระดับสต็อกสูงสุดที่ตั้งไว้',
       who:'ระบบอัปเดตเองทันทีที่ลงรับเข้า ไม่ต้องคีย์',
       how:'ระดับสูงสุดในเดโมคือสต็อกตั้งต้น × 2.2 ปัดขึ้นเป็นร้อย (ตัวอย่าง) วงเต็มแปลว่าเสี่ยงล้นสต็อก',
@@ -1438,7 +1445,7 @@ function drawerHTML(){
   const sk=skuById(S.sku), pl=S.plan||planFor(Math.max(1,S.po));
   switch(S.step){
     case 0: return '<h4>ล็อตคืออะไร</h4><p>สินค้ารหัสเดียวกัน ผลิตรอบเดียวกัน ส่งมาในครั้งเดียวกัน ถือเป็น 1 ล็อต และตัดสินรับหรือไม่รับพร้อมกันทั้งก้อน</p><div class="f">กล่องต่อพาเลท = ⌈ PO ÷ จำนวนพาเลท ⌉<small>ตอนนี้ ⌈'+fmt(S.po)+' ÷ '+S.pallets+'⌉ = '+Math.ceil(S.po/S.pallets)+' กล่อง</small></div><p>ข้อมูลทั้งหมดในเดโมเป็นตัวอย่างสมมติ</p>';
-    case 1: return '<h4>ข้อมูลไหลเข้าเครื่องแทนกระดาษ</h4><p>ระบบอ่านเอกสารโรงงาน (OCR) ตรวจกับ PO ใน SAP แล้วส่งรายการมาที่ handheld ของ Checker ทันที</p><p class="warn">การเชื่อม OCR/SAP กับ handheld ผ่าน API ต้องยืนยันกับทีม IT ว่าทำได้จริง</p>';
+    case 1: return '<h4>ข้อมูลไหลเข้าเครื่องแทนกระดาษ</h4><p>ระบบอ่านเอกสารโรงงาน (OCR) ตรวจกับ PO ใน SAP แล้วส่งรายการมาที่ handheld ของ Inspector ทันที</p><p class="warn">การเชื่อม OCR/SAP กับ handheld ผ่าน API ต้องยืนยันกับทีม IT ว่าทำได้จริง</p>';
     case 2: return '<h4>ผูกรถกับประตู</h4><p>สแกน QR ที่ประตู Dock ระบบรู้ว่ารถคันนี้ของ PO ไหนอยู่ประตูไหน ไม่ต้องเขียนหรือคีย์</p><div class="f">'+VENDORS[S.vendor].name+' → Dock '+(S.dockIdx+1)+'<small>ในเดโมกำหนดตามโรงงาน</small></div>';
     case 3: return '<h4>นับด้วยการสแกน</h4><div class="f">ส่วนต่าง = นับได้ − PO<small>'+fmt(S.counted)+' − '+fmt(S.po)+' = '+(S.counted-S.po)+' กล่อง</small></div><div class="f">N (ขนาดล็อตสำหรับสุ่ม) = นับได้<small>N = '+fmt(S.counted)+' กล่อง</small></div><p>นับจำนวนตรวจ 100% ด้วยการสแกน ส่วนคุณภาพใช้การสุ่มในขั้นถัดไป</p>';
     case 4: {
@@ -1612,6 +1619,13 @@ document.addEventListener('change',e=>{
 });
 ['trigL','trigR'].forEach(id=>$('#'+id).addEventListener('click',()=>{if(S.auto)setAuto(false);doScan();}));
 $('#hud').addEventListener('click',openHud);
+(function(){const hud=$('#hud'),cap=$('#hudCap'),pct=$('#hudPct');
+  const sync=()=>{$('#hudCapPct').textContent=pct.textContent;};
+  new MutationObserver(sync).observe(pct,{childList:true,characterData:true,subtree:true});sync();
+  const setMin=m=>{hud.classList.toggle('gone',m);cap.classList.toggle('on',m);sync();};
+  $('#hudMin').addEventListener('click',e=>{e.stopPropagation();setMin(true);});
+  cap.addEventListener('click',()=>setMin(false));
+})();
 $('#bDash').addEventListener('click',()=>{S.dashOpen=!S.dashOpen;$('#bDash').classList.toggle('on',S.dashOpen);renderDash();});
 $('#bAuto').addEventListener('click',()=>setAuto(!S.auto));
 $('#bView').addEventListener('click',()=>{user.dAz=0;user.dEl=0;user.zoom=1;});
